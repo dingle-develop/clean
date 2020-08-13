@@ -1,6 +1,6 @@
   package dIngle::Light;
 # **********************
-  our $VERSION = '0.02';
+  our $VERSION = '0.03';
   use strict; use warnings; use utf8
 # **********************************
 
@@ -10,36 +10,44 @@
 
 ; my $dirname = \&File::Basename::dirname
 
-; sub basepath
-   { my ($path)
-   ; if($ENV{'DINGLE_BASE_PATH'}) 
-       { $path = $ENV{'DINGLE_BASE_PATH'}
+; my $getbasepath = sub
+    { if($ENV{'DINGLE_BASE_PATH'}) 
+       { return $ENV{'DINGLE_BASE_PATH'}
        }
      else
-       { $path = Cwd::realpath($dirname->($dirname->($dirname->(__FILE__))));
+       { return Cwd::realpath($dirname->($dirname->($dirname->(__FILE__))));
        }
-   ; no strict 'refs'
-   ; no warnings 'redefine'
-   ; *{__PACKAGE__ . '::basepath'} = sub { $path }
-   ; return $path;   
+    }
+    
+; my $getconfigpath = sub
+    { if($ENV{'DINGLE_CONFIG_PATH'})
+       { return $ENV{'DINGLE_CONFIG_PATH'}
+       }
+     else
+       { return Path::Tiny::path(__PACKAGE__->basepath)->child('config')
+       }
+    }
+
+; sub basepath
+   { my $path = $getbasepath->() ;# uncoverable statement
+   ; no strict 'refs';
+   ; no warnings 'redefine';
+   ; *{__PACKAGE__ . '::basepath'} = sub { $path };
+   ; return $path ;# uncoverable statement  
    }
 
 ; sub configpath
-   { my $self = shift
-   ; my ($path)
-   ; if($ENV{'DINGLE_CONFIG_PATH'})
-       { $path = $ENV{'DINGLE_CONFIG_PATH'}
-       }
-     else
-       { $path = Path::Tiny::path($self->basepath)->child('config')
-       }
-   ; no strict 'refs'
-   ; no warnings 'redefine'
-   ; *{__PACKAGE__ . '::configpath'} = sub { $path }
-   ; return $path;
+   { my $path = $getconfigpath->() ;# uncoverable statement
+   ; no strict 'refs';
+   ; no warnings 'redefine';
+   ; *{__PACKAGE__ . '::configpath'} = sub { $path };
+   ; return $path; # uncoverable statement
    }
 
 ; 1
 
 __END__
 
+=head1 NAME
+
+dIngle::Light - the basic informations
