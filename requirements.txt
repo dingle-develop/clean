@@ -1,3 +1,4 @@
+App::Rad~1.05
 basis~0
 Clone~0.22
 Class::Data::Localize~0.01
