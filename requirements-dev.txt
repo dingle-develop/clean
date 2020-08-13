@@ -1,0 +1,6 @@
+Devel::Cover~1.36
+strict::ModuleName~0.01
+Test::ClassAPI~0.01
+Test::NoWarnings~1.04
+Test::Strict~0
+Test::Version~0

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$DINGLE_DEV_START" ] ; then
+    __DIR__=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
+    source $__DIR__/../../ENV.sh
+fi
+
+COPT="+ignore_re,vendor/lib/.*"
+COPT="$COPT,+ignore_re,^t/.*\.t"
+COPT="$COPT,+ignore_re,^.*/prove\$"
+
+PERL5OPT=-MDevel::Cover=$COPT prove
+cover +select t/lib/ \
+      +ignore_re ^t/.*\.t \
+      +ignore_re ^.*/prove\$

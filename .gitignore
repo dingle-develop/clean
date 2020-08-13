@@ -1,0 +1,16 @@
+MYMETA.json
+MYMETA.yml
+*~
+blib/
+_build/
+logs/
+Build
+cover_db/
+dog
+example/*/vendor
+site-lib/
+*:/
+*.geany
+*#
+vendor/
+vendor/lib
