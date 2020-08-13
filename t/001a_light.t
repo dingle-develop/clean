@@ -2,18 +2,20 @@
 ; use Test::dIngle::Light
 ; use strict; use warnings
 
-; use Test::More tests => 2
+; use Test::More tests => 4
 
 ; use Cwd('realpath')
 ; use FindBin
 ; use File::Basename (qw/dirname/)
 ; use Path::Tiny qw(path)
 
-; BEGIN {  }
-
 ; BEGIN
   { use_ok('dIngle::Light')
-  ; is(dIngle::Light->basepath,realpath(dirname($FindBin::Bin)))
+  ; my $real= realpath(dirname($FindBin::Bin))
+  ; is(dIngle::Light->basepath,$real, "default base path: $real" )
+  ; my $expect = path(dirname(__FILE__))->child('config')
+  ; is(dIngle::Light->configpath,$expect,"configpath (1): $expect")
+  ; is(dIngle::Light->configpath,$expect,"configpath:(2): $expect")
   }
 
 
@@ -21,12 +23,4 @@
 
 __END__
 
-; BEGIN
-  { local $ENV{'DINGLE_BASE_PATH'}
-  ; local $ENV{'DINGLE_CONFIG_PATH'}
- # ; local *dIngle::Light::configpath
-  ; local *dingle::Light::basepath
-  ; use_ok('dIngle::Light') 
-  ; my $expect = path(dirname(__FILE__))->child('config')
-  ; is(dIngle::Light->configpath,$expect,"configpath: $expect")
-  }
+

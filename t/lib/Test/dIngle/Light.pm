@@ -7,12 +7,22 @@
 ; use Sub::Uplevel
 
 ; use File::Basename ('dirname')
+; use Path::Tiny ()
 
-; BEGIN { $ENV{'DINGLE_CONFIG_PATH'} = 
-    dirname(dirname(dirname(dirname(__FILE__)))) . '/config'
-  }
+; BEGIN
+    { delete $ENV{ 'DINGLE_BASE_PATH' }
+	; delete $ENV{ 'DINGLE_CONFIG_PATH' }
+    }
 
-; use dIngle::Library
+; sub import 
+    { my ($class,$config) = @_
+	; my $testconfig = dirname(dirname(dirname(dirname(__FILE__)))) . '/config'
+    ; if( defined $config )
+        { $testconfig = Path::Tiny($testconfig)->child( $config )
+	    }
+	; $ENV{'DINGLE_CONFIG_PATH'} = $testconfig
+	}
+
 ; 1
 
 __END__

@@ -10,6 +10,6 @@ COPT="$COPT,+ignore_re,^t/.*\.t"
 COPT="$COPT,+ignore_re,^.*/prove\$"
 
 PERL5OPT=-MDevel::Cover=$COPT prove
-cover +select t/lib/ \
-      +ignore_re ^t/.*\.t \
-      +ignore_re ^.*/prove\$
+cover +ignore_re ^t/.*\.t \
+      +ignore_re ^.*/prove\$ \
+      -report html_basic

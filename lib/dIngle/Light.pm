@@ -6,6 +6,7 @@
 
 ; use Cwd ()
 ; use File::Basename ()
+; use Path::Tiny ()
 
 ; my $dirname = \&File::Basename::dirname
 
@@ -30,7 +31,7 @@
        { $path = $ENV{'DINGLE_CONFIG_PATH'}
        }
      else
-       { $path = File::Spec->catdir($self->basepath,'config')
+       { $path = Path::Tiny::path($self->basepath)->child('config')
        }
    ; no strict 'refs'
    ; no warnings 'redefine'
