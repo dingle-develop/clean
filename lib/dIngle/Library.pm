@@ -4,7 +4,6 @@
   use strict; use warnings; use utf8
 # **********************************
 ; use autodie
-; use autouse 'Carp' => qw/carp/
 ; use Config::General ()
 ; use File::Spec ()
 ; use Path::Tiny ()
@@ -17,7 +16,7 @@
 
 ; my $load_config = sub
     { my ($path,$file) = @_
-	; my $sitelib = File::Spec->catfile($path,$file)
+	; my $sitelib = Path::Tiny::path($path)->child($file)
 	; return () unless -f $sitelib or -l $sitelib
     ; return Config::General->new(-ConfigFile => $sitelib)->getall;
     }
@@ -25,7 +24,7 @@
 ; my $real_lib = sub
     { my ($lib,$base) = @_
     ; unless( Path::Tiny::path($lib)->is_absolute )
-        { $lib = File::Spec->catdir($base, $lib)
+        { $lib = Path::Tiny::path($base)->child($lib)
         }
     ; return $lib
     }
@@ -52,8 +51,9 @@
 	; unshift @INC , sub
 	    { my ($sub,$mod) = @_
 	    ; if(exists($mods{ $mod }))
-	        { my $filename = File::Spec->catfile(
-	              $libs{ $mod }, $mods{ $mod }, 'lib', $mod)
+	        { my $filename = Path::Tiny::path($libs{ $mod })
+				    ->child( $mods{ $mod } )
+				    ->child( 'lib' )->child( $mod )
 	        ; open (my $fh, "<", $filename)
 	        ; $INC{$mod} = $filename
 	        ; return $fh
@@ -67,5 +67,11 @@
 ; 1
 
 __END__
+
+=HEAD1 NAME
+
+dIngle::Library - lädt die Entwicklungs- und Projektmodule 
+
+
 
 
