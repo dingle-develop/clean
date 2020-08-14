@@ -15,12 +15,12 @@
     }
 
 ; sub import 
-    { my ($class,$config) = @_
+    { my ($class,$config) = (@_,'')
 	; return if $config eq '-dingle-env'
 
 	; my $testconfig = dirname(dirname(dirname(dirname(__FILE__)))) . '/config'
-    ; if( defined $config )
-        { $testconfig = Path::Tiny($testconfig)->child( $config )
+    ; if( $config )
+        { $testconfig = Path::Tiny::path($testconfig)->child( $config )
 	    }
 	; $ENV{'DINGLE_CONFIG_PATH'} = $testconfig
 	}
