@@ -1,12 +1,20 @@
 ; use lib 't/lib'
-; use Test::dIngle::Light
+
+# test the real dIngle sitelib
+; use Test::dIngle::Light '-dingle-env'
 ; use strict; use warnings
 
-; use Test::More tests => 2
+; use Test::More tests => 3
+
 
 ; use_ok('dIngle::Library')
-; use_ok('dIngle::Library', 'site-lib.conf')
+; is_deeply( [dIngle::Library->get_library ],[],"no default sitelib anymore")
 
 ; use Data::Dumper
 
-#; print Dumper ( \%INC )
+; print Dumper ()
+
+; use_ok('dIngle::Library', 'site-lib.conf')
+
+
+; print Dumper ( [dIngle::Library->get_library] )

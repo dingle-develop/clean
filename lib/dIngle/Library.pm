@@ -28,12 +28,14 @@
 	    }
 	}
 	
-	
 
 ; my $load_config = sub
     { my ($path,$file) = @_
 	; my $sitelib = Path::Tiny::path($path)->child($file)
-	; return () unless -f $sitelib or -l $sitelib
+	; unless ( -f $sitelib or -l $sitelib )
+	    { Carp::carp "No configuration $sitelib found."
+		; return ()
+	    }
     ; return Config::General->new(-ConfigFile => $sitelib)->getall;
     }
 
@@ -69,8 +71,11 @@
 	; local $_
 	; $pack->use_library( $_ ) for @configs
     }
-
-#; END { print Data::Dumper::Dumper(\%INC) }
+    
+; sub get_library
+    { my ($pack) = @_
+	; return map { [ $_ , $mods{$_} , "$libs{$_}" ] } sort keys %mods
+	}
 
 ; 1
 
