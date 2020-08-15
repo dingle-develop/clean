@@ -9,8 +9,8 @@
 
 ; use_ok('dIngle::Library')
 
-; dies_ok { require Shari::Code::Loader } 'Empty site lib means this is not loadable'
 ; is_deeply( [dIngle::Library->get_library ],[],"no default sitelib anymore")
+; dies_ok { require Shari::Code::Loader } 'Empty site lib means the stuff isnt loadable'
 
 ; use_ok('dIngle::Library', 'site-lib.conf')
 ; isnt( scalar dIngle::Library->get_library, 0,"site lib loaded" )
