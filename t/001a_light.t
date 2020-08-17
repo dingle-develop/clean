@@ -1,4 +1,5 @@
 ; use lib 't/lib'
+# test t/config
 ; use Test::dIngle::Light
 ; use strict; use warnings
 

@@ -1,5 +1,5 @@
 ; use lib 't/lib'
-; use Test::dIngle::Light
+; use Test::dIngle::Light ()
 ; use strict; use warnings
 
 ; use Test::More tests => 3
