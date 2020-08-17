@@ -1,0 +1,14 @@
+^_build
+^Build$
+^blib
+~$
+\.bak$
+CVS
+^.git
+^vendor
+^MYMETA\.yml$
+^MYMETA\.json$
+^cover_db
+^vendor
+^site-lib
+^bin/dingle

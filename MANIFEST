@@ -1,0 +1,26 @@
+Build.PL
+check-requirements.sh
+config/site-lib.conf
+ENV.sh
+install.sh
+lib/dIngle.pm
+lib/dIngle/Conf.pm
+lib/dIngle/Library.pm
+lib/dIngle/Light.pm
+lib/dIngle/Log.pm
+LICENSE
+Makefile
+MANIFEST			This list of files
+MANIFEST.SKIP
+README
+requirements-dev.txt
+requirements.txt
+t/001a_light.t
+t/001b_light.t
+t/001c_light.t
+t/002a_library.t
+t/002b_library.t
+t/099_load_all.t
+t/bin/coverage
+t/config/site-lib.conf
+t/lib/Test/dIngle/Light.pm
