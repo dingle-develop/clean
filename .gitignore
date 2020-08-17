@@ -1,5 +1,6 @@
 MYMETA.json
 MYMETA.yml
+*.bak
 *~
 blib/
 _build/
