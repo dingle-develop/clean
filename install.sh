@@ -4,6 +4,10 @@ __DIR__=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)
 
 cd $__DIR__
 
+if [ -z "$DINGLE_DEV_START" ] ; then
+    source ENV.sh
+fi
+
 mkdir -p bin
 mkdir -p vendor
 
