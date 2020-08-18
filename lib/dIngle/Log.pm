@@ -64,34 +64,34 @@
 ###########################################
 
 ; package dIngle::Log::Testing
+; use Test2::Tools::Basic qw(diag)
+
 ; our $VERSION=$dIngle::Log::VERSION
+; our $LEVEL =
+    { debug => 0
+    , info => 0
+    , warn => 1
+    , error => 1
+    , fatal => 1
+    }
 
 ;  sub AUTOLOAD
     { our $AUTOLOAD
+    ; our $LEVEL
     ; $AUTOLOAD =~ s/.*:://
     ; my $self = shift
     ; my $method = lc($AUTOLOAD)
     ; my $level = $method eq "log" ? shift() : $method
 
-    # List taken from Log::Any
-    ; my $levels = { debug => 0
-                   , info => 0, inform => 0
-                   , notice => 0,
-                   , warning => 1, warn => 1
-                   , error => 1, err => 1
-                   , critical => 1, crit => 1, fatal => 1
-                   , alert => 1
-                   , emergency => 1
-                   }
 
-    ; my $showwarn = $levels->{$level}
+    ; my $showwarn = $LEVEL->{$level}
     ; if(defined $showwarn)
-        { warn("$self: " . $level . " : " . join("\n",@_) . "\n") if $showwarn
+        { diag("$self: " . $level . " : " . join("\n",@_) . "\n") if $showwarn
         }
       else
-        { warn $self
-        ; warn "UNKNOWN LOGLEVEL: $level\n"
-        ; warn "MESSAGE: " . join("\n",@_) . "\n"
+        { diag $self
+        ; diag "UNKNOWN LOGLEVEL: $level\n"
+        ; diag "MESSAGE: " . join("\n",@_) . "\n"
         }
     }
 
