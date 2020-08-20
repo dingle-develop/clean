@@ -1,5 +1,6 @@
 Build.PL
 check-requirements.sh
+config/instances.conf
 config/site-lib.conf
 ENV.sh
 install.sh
@@ -22,9 +23,17 @@ t/001c_light.t
 t/002a_library.t
 t/002b_library.t
 t/099_load_all.t
+t/119_dIngle_Conf.t
+t/120_dIngle_Log.t
 t/121_dIngle_Instance.t
 t/bin/coverage
+t/config/hello.conf
+t/config/instances-by-hostname.conf
+t/config/instances-by-hostname2.conf
 t/config/instances-one-simple.conf
 t/config/instances-simple-ok.conf
+t/config/instances.conf
 t/config/site-lib.conf
+t/config/test-dingle.conf
+t/lib/Test/dIngle/Config/Dynamic.pm
 t/lib/Test/dIngle/Light.pm
