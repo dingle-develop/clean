@@ -32,8 +32,9 @@
     }
 
 ; sub detect_instance
-    { my ($pkg,$nomsg)=@_
-    ; my $instanceconfig = Path::Tiny::path($_configpath)->child('instances.conf')
+    { my ($pkg,$configfile)=@_
+	; $configfile ||= 'instances.conf'
+    ; my $instanceconfig = Path::Tiny::path($_configpath)->child($configfile)
 
     ; my $instance = dIngle::Instance->new()
     ; $instance->from_configfile($instanceconfig)->detect()
@@ -123,10 +124,6 @@ __END__
 dIngle::Conf
 
 =head2 Environment variables
-
-   VISCONTI_CONFIG_PATH
-
-=head2 retrieve -- lade eine Konfiguration
 
 Diese Funktion lädt ohne Parameter die passende Konfiguration automatisch.
 Verantwortlich dafür ist die Methode C<detect_instance>, die über das OS und
