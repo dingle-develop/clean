@@ -1,2 +1,3 @@
 Devel::Cover~1.36
-Test2::Suite
+Test2::Suite~0
+Test::Output~0
