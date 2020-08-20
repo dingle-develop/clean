@@ -4,8 +4,15 @@
 ; use Test2::V0
 ; use FindBin
 
-; plan(9)
+; plan(14)
 
+; use Sys::Hostname
+; use Package::Subroutine
+
+# Mock Sys::Hostname
+; install Package::Subroutine:: "Sys::Hostname","hostname", sub { "dummyhost" }
+
+; package main
 ; use dIngle::Instance
 
 ; my $instance = new dIngle::Instance
@@ -50,6 +57,25 @@
 ########################################
 ; ok("$instance" eq "one","cmp on left side")
 ; ok("one" eq "$instance","cmp on right side")
+
+# check hostname
+; my $inst = new dIngle::Instance::
+; $inst->from_configfile($configdir . 'instances-by-hostname.conf')
+
+; $inst->detect()
+
+; is(Sys::Hostname::hostname (), "dummyhost","mock hostname ok")
+; is( "$inst","demodev","Instance detected by hostname")
+
+
+; my $inst2 = new dIngle::Instance::
+; $inst2->from_configfile($configdir . 'instances-by-hostname2.conf')
+
+; like( warning { $inst2->detect() },
+    qr/Fallback configuration used. at .*/, "Using fallback configuration warns.")
+
+; is( "$inst2","testsystem","use fallback instance by unknown hostname")
+; ok(! ($inst eq $inst2), "instances are different")
 
 #; use Data::Dumper
 #; print Dumper({$instance->configuration->getall})

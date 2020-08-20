@@ -14,7 +14,7 @@
     _rw => fallback => '$',
     _rw => configuration => '$'
 
-; use Sys::Hostname ('hostname')
+; use Sys::Hostname ()
 ; use Perl6::Junction ()
 ; use Carp ()
 
@@ -49,7 +49,7 @@
     ; if($config->exists('hostname'))
         { my @hostnames = $config->is_array('hostname') 
             ? $config->array('hostname') : $config->value('hostname')
-        ; if(hostname() eq Perl6::Junction::any(@hostnames))
+        ; if(Sys::Hostname::hostname() eq Perl6::Junction::any(@hostnames))
             { return $name
             }
         }
@@ -78,7 +78,7 @@
             }
         }
     ; unless($self->name)
-        { Carp::carp("Fallback configurion used.")
+        { Carp::carp("Fallback configuration used.")
         ; $self->name($self->fallback)
         }
     ; return $self
