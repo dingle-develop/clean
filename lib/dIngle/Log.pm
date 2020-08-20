@@ -64,7 +64,6 @@
 ###########################################
 
 ; package dIngle::Log::Testing
-; use Test2::Tools::Basic qw(diag)
 
 ; our $VERSION=$dIngle::Log::VERSION
 ; our $LEVEL =
@@ -74,8 +73,13 @@
     , error => 1
     , fatal => 1
     }
+    
+; sub write
+    { my ($self,@args) = @_
+    ; print STDERR "# " , @args
+    }
 
-;  sub AUTOLOAD
+; sub AUTOLOAD
     { our $AUTOLOAD
     ; our $LEVEL
     ; $AUTOLOAD =~ s/.*:://
@@ -86,12 +90,12 @@
 
     ; my $showwarn = $LEVEL->{$level}
     ; if(defined $showwarn)
-        { diag("$self: " . $level . " : " . join("\n",@_) . "\n") if $showwarn
+        { $self->write("$self: " . $level . " : " . join("\n",@_) . "\n") if $showwarn
         }
       else
-        { diag $self
-        ; diag "UNKNOWN LOGLEVEL: $level\n"
-        ; diag "MESSAGE: " . join("\n",@_) . "\n"
+        { $self->write( ref $self ? ref $self : $self, "\n")
+        ; $self->write( "UNKNOWN LOGLEVEL: $level\n" )
+        ; $self->write( "MESSAGE: ", join("\n",@_), "\n")
         }
     }
 
