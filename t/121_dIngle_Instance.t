@@ -1,14 +1,19 @@
 ; use lib 't/lib'
 ; use Test::dIngle::Light # -*- perl -*-
 # *************************
-; use Test::More tests => 9
-; use strict; use warnings; use utf8
+; use Test2::V0
 ; use FindBin
 
-; BEGIN { use_ok('dIngle::Instance') }
+; plan(9)
+
+; use dIngle::Instance
 
 ; my $instance = new dIngle::Instance
 ; isa_ok($instance,'dIngle::Instance')
+
+; like( dies { "$instance" }
+    , qr/Name of instance not defined, call detect to set the name! at.*/
+    , "stringify undetected instance dies") 
 
 ; my $configdir = "$FindBin::Bin/config/"
 
