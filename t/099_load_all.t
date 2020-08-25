@@ -17,7 +17,7 @@
         return unless $mod =~ m/\.pm$/;
         $mod =~ s|^lib/||;
         $mod =~ s|\.pm$||;
-        $mod =~ s|/|::|;
+        $mod =~ s|/|::|g;
         use_ok($mod);
     }, { recurse => 1 });
 
