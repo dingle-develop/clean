@@ -1,0 +1,53 @@
+#  dIngle - Software Builder -
+# Module Filme - English.
+# Copyright (C) 2020 dIngle Developer
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: dIngle 2.6\n"
+"POT-Creation-Date: 2007-6-21 12:0+CET\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English <dingle@young-workers.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: dIngle/Structure.pm:50
+msgid "Bitte wählen sie ein Layout."
+msgstr "Please choose a layout."
+
+#: dIngle/Module/Filme/Tasks.pm:144
+msgid "Formular"
+msgstr "Formular"
+
+#: dIngle/Module/Filme/Tasks.pm:144
+msgid "Katalog"
+msgstr "Catalog"
+
+#: dIngle/Module/Filme/Tasks.pm:144
+msgid "Personen"
+msgstr "Persons"
+
+#: dIngle/Module/Filme/Tasks.pm:144
+msgid "Redaktion"
+msgstr "Editorial"
+
+#: dIngle/Module/Filme/Personen.pm:184
+msgid "Regie"
+msgstr "Director"
+
+#: dIngle/Module/Filme/Programm.pm:34 dIngle/Module/Filme/Programm.pm:57
+msgid "Trailer für"
+msgstr "Trailer for"
+
+#
+msgid "Person auswählen"
+msgstr "Select person"
+
+#: dIngle/Module/Filme/Personen.pm:228
+msgid "automatisch übertragen?"
+msgstr "submit automatically?"
