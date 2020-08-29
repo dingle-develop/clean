@@ -48,7 +48,7 @@
     ; return $config if !$tempinstance && defined($config)
 
     ; my $project = delete($args{'project'}) || 'dingle'
-    ; $args{'config_file'} ||= Path::Tiny::path($_configpath)->child("${project}.conf")
+    ; $args{'source'} ||= Path::Tiny::path($_configpath)->child("${project}.conf")
 
     ; my $realinstance  = dIngle::Conf->detect_instance()
     ; $args{'instance'} ||= $realinstance
