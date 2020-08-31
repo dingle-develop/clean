@@ -4,6 +4,9 @@
 # **********************
 ; use strict; use warnings; use utf8
 
+; use Package::Subroutine::Sugar
+; use dIngle::Loader ()
+
 ; our $LOGGING # which Logging method (log4perl, private, testing, FileSimple,...)
 ; our $ALL_LANGUAGES = 0 # build with all available languages
 
@@ -22,6 +25,8 @@
 #############################
 # Class methods also used by dIngle::Object
 #############################
+; import from:: 'dIngle::Loader' => ('load')
+
 ; sub configuration
     { return $_[0]->project->configuration
     }
@@ -32,15 +37,6 @@
         unless defined $value
     ; return $value
     }
-
-; sub load
-    { my $self = shift
-    ; my $loader = new dIngle::Loader::
-    ; $loader->_setup_return(@_) if @_
-    ; return $loader
-    }
-
-
 
 ; my $i18n_setup = 0
 
@@ -172,6 +168,25 @@
         }
     ; dIngle::Groups->setup()
     ; return $class
+    }
+
+############################
+# Development
+############################
+; sub dump
+    { shift;
+    ; warn Data::Dumper::Dumper(@_),"\n"
+    ; Carp::carp("dump - from ")
+    }
+
+sub debug
+    { warn "\n@_\n"
+    ; Carp::carp("debug - from ")
+    }
+
+; sub carp_task
+    { my $self = shift
+    ; $self->debug(@_,"\nCalled By: ".dIngle::Tasks->task_caller(0))
     }
 
 ; 1
