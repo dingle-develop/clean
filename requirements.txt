@@ -3,10 +3,13 @@ basis~0
 Carp::Always~0
 Class::Data::Localize~0
 Config::General~0
+File::Monitor~0
 Getopt::Lucid~0
 Hash::Merge~0
 Locale::Maketext~0
 Package::Subroutine~0
+parent~0
 Path::Tiny~0
+Perl6::Junction~0
 Ref::Util~0
 Sys::Hostname~0
