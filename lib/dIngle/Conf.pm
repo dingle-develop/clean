@@ -53,7 +53,7 @@
     ; my $realinstance  = dIngle::Conf->detect_instance()
     ; $args{'instance'} ||= $realinstance
     
-    ; _log("info","Load config from file $args{'config_file'}")
+    ; _log("info","Load config from file $args{'source'}")
     ; _log("info","Config instance is $args{'instance'}")
     ; my $c = Shari::Conf->load_main_config(\%args)
 
