@@ -92,29 +92,6 @@
     { $config=undef
     }
 
-# TODO modernization
-; { my %extensions
-  ; sub _extend
-      { my ($self,$section,$filename) = @_
-      ; Carp::croak("Configuration should be extended after loading.")
-          unless $config
-
-      ; my $file = $_configpath . $filename
-
-      ; unless(-f $file)
-          { Carp::croak("Configuration extension $filename does not exist.")
-          }
-
-      ; return if $extensions{$file}
-
-      ; my $cfg = new Config::General( -ConfigFile => $file, '-UTF8' => 1)
-
-      ; $config = Hash::Merge::merge($config,{$section => {$cfg->getall}})
-
-      ; $extensions{$file} = 1
-      }
-  }
-
 ; 1
 
 __END__
