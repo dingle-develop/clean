@@ -98,8 +98,7 @@
     ; _log_modules('debug' => "Modules path " . join("::",@{$opts{path}}))
     ; $self->modules(new dIngle::Modules:: (%opts))
     ; foreach my $module ($self->modules->modules)
-        { last unless $module->can('project')
-        ; $module->project($self)
+        { $module->project($self)
         }
     ; $self
     }
@@ -127,6 +126,10 @@
 
 ; sub module
     { return $_[0]->modules->fetch("$_[1]")
+    }
+    
+; sub get_submodules
+    { return qw/I18N Tasks/
     }
 
 ; 1
