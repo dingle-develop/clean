@@ -5,7 +5,7 @@
 ; use strict; use warnings; no warnings 'once'
 
 ; use dIngle
-; use Package::Subroutine
+; use Package::Subroutine ()
 ; my $log4perlconfig = 'config/log4perl.conf' 
 
 ; sub import
@@ -18,7 +18,7 @@
             }
         ; my $trg = $args{$method}
         ; my $sub = sub
-            { my ($lvl,$msg) = @_; #warn $msg
+            { my ($lvl,$msg) = @_
             ; my $log=dIngle::Log->get_logger($trg)
 
             ; if( ref($log) eq 'Log::Log4perl::Logger' )
