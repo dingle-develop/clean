@@ -1,11 +1,13 @@
   package dIngle::Loader;
 # ***********************
-  $VERSION = '0.01';
+  $VERSION = '0.02_001';
 # ******************
-use strict; use warnings; use utf8;
+; use strict; use warnings; use utf8
 
 ; use Carp ()
 ; use Shari::Code::Unit
+
+; use dIngle::Loader::Structure ()
 
 ; use dIngle::Log
     _log_structure => 'dIngle.builder.structure',
@@ -114,11 +116,10 @@ use strict; use warnings; use utf8;
 
 ; sub structure
     { my ($self,@args) = @_
-    ; my $project = dIngle->project
-    ; my @search = (
-        [ $project->namespace,$project->structurepath,@args ],
-        [ 'dIngle','Structure',@args ]
-    )
+
+    ; my @search = map { [@$_, @args] }
+        @{dIngle::Loader::Structure->namespaces}
+
     ; unless( defined $self->unit )
         { foreach my $sp (@search)
             { $self->by_ns(@$sp)
@@ -133,7 +134,7 @@ use strict; use warnings; use utf8;
             }
         }
     ; return $self->_return unless $self->unit->has_error
-    ; dIngle->dump($self->unit)
+
     ; my $errmsg = "Failure loading structure " . $self->unit->modulename . ": \n" .
         $self->unit->get_error();
     ; _log_structure("error",$errmsg)
