@@ -1,7 +1,7 @@
 ; use lib 't/lib'
 
 # test the real dIngle sitelib
-; use Test::dIngle::Light
+; use Test::dIngle::Application
 ; use strict; use warnings
 
 ; use Test::More 

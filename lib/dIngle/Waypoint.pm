@@ -30,14 +30,14 @@
         ; dIngle::I18N->_all_languages([map { lc } (ref $tags ? @$tags : ($tags))])
 
         ; if($dIngle::ALL_LANGUAGES)
-            { $self->setup_handle($_)
+            { dIngle::I18N->setup_handle($_)
                 foreach dIngle::I18N->all_languages
             }
           else
-            { $self->setup_handle($lang) 
+            { dIngle::I18N->setup_handle($lang) 
             }
 
-        ; _logger("debug","Current Language: $lang")
+        ; dIngle::I18N::_logger("debug","Current Language: $lang")
         }
   }
 

@@ -28,6 +28,6 @@ dIngle::Application
 
 =head1 DESCRIPTION
 
-This module encapsulates the informations to run a dingle installation.
-Thatswhy it is used early in almost all dingle scripts.
+Loads everything what is required to run a dIngle::Application.
+
 

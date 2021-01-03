@@ -19,7 +19,8 @@
 ; BEGIN:
     { %dIngle::Loader::returns =
         ( 'new' => sub 
-            { $_[0]->unit->modulename->new($_[0]->_returnargs) 
+            { my ($self,@rgs) = @_
+            ; $self->unit->modulename->new(@rgs) 
             }
         , 'modulename' => sub 
             { $_[0]->unit->is_ready ? $_[0]->unit->modulename : undef 
@@ -118,7 +119,12 @@
     { my ($self,@args) = @_
 
     ; my @search = map { [@$_, @args] }
-        @{dIngle::Loader::Structure->namespaces}
+        @{dIngle::Loader::Structure->namespaces}    
+    
+    # add current context to returnargs if there is no
+    ; unless( scalar($self->_returnargs) )
+        { $self->[__returnargs] = [dIngle->context]
+        }
 
     ; unless( defined $self->unit )
         { foreach my $sp (@search)
@@ -129,10 +135,11 @@
                 ; return $self->_return
                 }
             ; unless($self->unit->has_error)
-                { _log_formats("debug","Not loading structure unit: " . $self->unit->modulename)
+                { _log_structure("debug","Not loading structure unit: " . $self->unit->modulename)
                 }
             }
         }
+
     ; return $self->_return unless $self->unit->has_error
 
     ; my $errmsg = "Failure loading structure " . $self->unit->modulename . ": \n" .

@@ -32,7 +32,7 @@
 	; $ENV{'DINGLE_CONFIG_PATH'} = $testconfig
 	
 	; local $@
-	; eval "use dIngle::Library 'site-lib.conf'"
+	; eval "use dIngle::Library '" . $opt->get_sitelib . "'"
 	; die $@ if $@
 	}
 
