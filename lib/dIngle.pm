@@ -4,7 +4,6 @@
 # **********************
 ; use strict; use warnings; use utf8
 
-; use Package::Subroutine::Sugar
 ; use dIngle::Loader ()
 
 ; our $LOGGING # which Logging method (log4perl, private, testing, FileSimple,...)
@@ -15,11 +14,15 @@
 #############################
 ; { use Class::Data::Localize
   ; my ($mka,$self) = (\&Class::Data::Localize::mk_classdata,__PACKAGE__)
-  ; $mka->($self,'project')  ; $mka->($self,'module')
-  ; $mka->($self,'currentmodule')
-  ; $mka->($self,'format_type')    # really required ??? --> Im Moment ja siehe dIngle::Field - 425ff
-  ; $mka->($self,'backend')
-  ; $mka->($self,'object','dIngle')
+  ; $mka->($self,'project')
+  ; $mka->($self,'hive')
+  ; $mka->($self,'context')
+  
+  #; $mka->($self,'module')
+  #; $mka->($self,'currentmodule')
+  #; $mka->($self,'format_type')    # really required ??? --> Im Moment ja siehe dIngle::Field - 425ff
+  #; $mka->($self,'backend')
+  #; $mka->($self,'object','dIngle')
   }
 
 #############################
