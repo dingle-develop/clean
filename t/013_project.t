@@ -1,6 +1,6 @@
 ; use lib 't/lib'
-; use Test::dIngle::Light
-# ***********************
+; use Test::dIngle::Application
+# *****************************
 ; use strict; use warnings; use utf8
 
 ; use Test2::V0
