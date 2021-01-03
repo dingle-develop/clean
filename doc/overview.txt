@@ -1,0 +1,19 @@
+
+generator controls process
+generator knows project
+generator builds hive
+
+project has a name
+project has a configuration
+project has a list of modules
+project knows the list of classes
+project has a list of styles
+
+module describe different formats
+
+format with  style describe result
+
+hive is a stack of layers
+layer has one or more container
+
+container contains tasks
