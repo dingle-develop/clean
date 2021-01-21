@@ -13,5 +13,6 @@ site-lib/
 *:/
 *.geany
 *#
+bin/dingle
 vendor/
 vendor/lib
