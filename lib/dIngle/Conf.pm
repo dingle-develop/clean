@@ -26,11 +26,6 @@
 ; my $_configpath = dIngle::Light->configpath
 ; my $config
 
-; sub import
-    { my ($pkg,$instance)=@_
-    ; $pkg->retrieve(instance => $instance) if $instance
-    }
-
 ; sub detect_instance
     { my ($pkg,$configfile)=@_
 	; $configfile ||= 'instances.conf'
