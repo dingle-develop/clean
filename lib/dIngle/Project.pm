@@ -34,10 +34,11 @@
     }
 
 ; use overload
-    '""' => sub { return  $_[0]->name || do
-        { Carp::carp("Nameless project stringified!")
+    '""' => sub 
+        { return $_[0]->name if length $_[0]->name
+        ; Carp::carp("Nameless project stringified!")
         ; return ''
-        }}
+        }
 
 ########################
 #    CONFIGURATION
@@ -155,10 +156,11 @@ dIngle::Project
 
 =over 4
 
-=item name
+=item name - rw scalar
 
 Name of the project, internal name, should be unique and despite it is writable,
-it should not change often during object life time.
+it should not change often during object life time. If the object is stringified 
+this attribute will be returned.
 
 =item configuration - lvalue method
 
@@ -169,14 +171,18 @@ Store a configuration object, normally of class dIngle::Project::Configuration.
 A namespace where the parts of this project resides. The convention is to set
 it up in the configuration file.
 
-=item basedir - the project root directory
+=item basedir - rw scalar - the project root directory
 
-=item modules - when setup it contains a dIngle::Modules object.
+=item modules - rw scalar - when setup it contains a dIngle::Modules object.
 
-=item modulepath
+=item modulepath - rw array
 
 This attribute contains an array with sub namespace where modules reside.
 Normally they are stored under C<Module> in the project namespace.
+
+=item structurepath - rw array
+
+Similar to modulepath but for structures.
 
 =back
 

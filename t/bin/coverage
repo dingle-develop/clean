@@ -13,4 +13,5 @@ PERL5OPT=-MDevel::Cover=$COPT prove
 cover +ignore_re ^t/.*\.t \
       +ignore_re ^.*/prove\$ \
       +ignore_re ^site-lib/ \
+      +ignore_re ^vendor/ \
       -report html_basic
