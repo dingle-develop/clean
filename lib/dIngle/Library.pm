@@ -83,8 +83,30 @@ __END__
 
 =HEAD1 NAME
 
-dIngle::Library - lädt die Entwicklungs- und Projektmodule 
+dIngle::Library - load additionals modules not mature enough for CPAN
 
+=HEAD1 DESCRIPTION
+
+This is a use case for the feature, to add a subroutine to @INC. It adds
+only one subroutine during BEGIN phase. The required module information is
+stored in lexical hashes.
+
+It can be used with several configuration files, which are in Config::General 
+format.
+
+=head2 C<import>
+
+    use dIngle::Library "sitelib.conf";
+    
+=HEAD2 C<use_library>
+    
+Alternative
+  
+    dIngle::Library->use_library ( "sitelib.conf" );
+    
+=HEAD1 CONFIGURATION
+    
+This module requires only C<dIngle::Light>, not C<dIngle::Application>. 
 
 
 

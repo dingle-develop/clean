@@ -186,6 +186,12 @@ Similar to modulepath but for structures.
 
 =back
 
+=head2 Configuration related methods
+
+=over 4
+
+=item C<load_configuration(%args)>
+
 =head2 Module Related Methods
 
 =over 4
