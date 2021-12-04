@@ -16,7 +16,7 @@ function checkCommand () {
 checkCommand cpanm
 
 if [ $errors == 0 ] ; then
-    echo "# Success - environment has the requirement commands."
+    echo "# Success - environment has the required commands."
     true
 else
     echo "Found $errors errrors."
