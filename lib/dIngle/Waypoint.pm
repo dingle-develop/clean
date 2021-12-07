@@ -1,5 +1,5 @@
   package dIngle::Waypoint
-# **************************
+# ************************
 ; our $VERSION = '0.02'
 # *********************
 ; use strict; use warnings; use utf8
@@ -14,6 +14,10 @@
         ; $project->load_config(%$config)
         ; $project->load_modules(%$modopt)
         ; dIngle->project($project)
+        },
+    hive => sub
+        { my ($self,$hive) = @_
+        ; dIngle->hive($hive)
         },
     i18n => sub
         { my ($self) = @_
