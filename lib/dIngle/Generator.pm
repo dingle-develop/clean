@@ -4,6 +4,8 @@
 # ********************
 ; use strict; use warnings; use utf8
 
+; use dIngle::Hive::Container
+
 ; use Carp ()
 
 # Changes
@@ -14,7 +16,7 @@
 # TODO: use dIngle Error -- hier machts eigentlich mal Sinn
 
 ############################
-#    CLASS CONSTRUCTION
+# C L A S S
 ############################
 ; use subs qw/init/
 
@@ -24,12 +26,99 @@
     _lvalue => _module => '$',
     _rw     => formats => '@',
     _rw     => styles  => '@'
-    
+
+############################
+# I N I T
+############################
 ; sub init
-    { my ($self,%args)=@_
+    { my ($self,%args) = @_
+    ; $self->[&_project] = defined($args{'project'}) ?
+        $args{'project'} : dIngle->project
+    ; $self->[&_hive] = defined($args{'hive'}) ?
+        $args{'hive'} : $self->setup_hive
     ; $self->module($args{'module'}) if $args{'module'}
     ; return $self
     }
+
+# update as hive evolves
+; sub setup_hive
+    { my ($self) = @_
+    # only a single container hive so far
+    ; my $container = new dIngle::Hive::Container::
+    ; $self->[&_hive] = $container
+    ; dIngle::Waypoint::Init->hive($container)
+    ; return $container
+    }
+
+############################
+# P R O P E R T I E S
+############################
+; sub module
+    { my ($self,$modul)=@_
+
+    ; if($modul)
+        { unless(ref $modul)
+            { $modul = $self->project->module($modul)
+            }
+
+        ; if( defined($self->_module) && $self->_module ne $modul )
+            { $self->formats([])
+            }
+        ; $self->_module = $modul
+        ; return $self
+        }
+      else
+        { return $self->_module
+        }
+    }
+
+############################
+# S E T U P
+############################
+; sub setup_project
+    { my ($self, %args) = @_
+    ; my $project = delete($args{'project'}) || $self->project
+
+    ; my @modules = $project->modules->modules
+    ; my @submodules = $project->get_submodules
+
+    ; foreach my $module (@modules)
+        { foreach my $class (@submodules)
+            { if( (my $unit = $module->submodule_unit($class))->is_ready)
+                { $unit->modulename->setup
+                }
+            }
+        }
+    }
+
+# deprecated? vvvv
+
+; sub build_module
+    { my ($self,%args) = @_
+    ; Carp::croak "No module set." unless $self->module
+
+    # this is a hack and should be optimized, but it is a dIngle::Base issue
+    ; dIngle->class_initialize("".$self->module)
+
+    ; if(dIngle->isdef("Build Module " . $self->module))
+        { my $obj = $self->module->buildobject
+        ; $obj->take("Build Module " . $self->module)
+        }
+      else
+        { $self->build_sites(%args)
+        }
+
+    ; unless($args{'no_chunks'})
+        { my @chunks = $self->get_chunks(%args)
+        ; foreach my $chunk ( @chunks )
+            { next unless $self->prebuild_check($self->module,$chunk)
+            ; $self->build_chunk($chunk,%args)
+            }
+        }
+    ; return $self
+    }
+
+###################################
     
 ; sub setup_container
     { my ($self,%args) = @_
@@ -74,28 +163,6 @@
         }
     }
 
-############################
-# P R O P E R T I E S
-############################
-; sub module
-    { my ($self,$modul)=@_
-
-    ; if($modul)
-        { unless(ref $modul)
-            { $modul = dIngle->project->module($modul)
-            }
-
-        ; if( defined($self->_module) && $self->_module ne $modul )
-            { $self->formats([])
-            }
-        ; $self->_module = $modul
-        ; return $self
-        }
-      else
-        { return $self->_module
-        }
-    }
-
 ; sub set_all_formats
     { my ($self)=@_
     ; $self=_generator($self)
@@ -119,36 +186,6 @@
                 $unit->add_dependency($dir)
             }
         }
-    }
-
-#################################
-# Generator Methods
-#################################
-; sub build_module
-    { my ($self,%args) = @_
-    ; $self=_generator($self,%args)
-
-    ; Carp::croak "No module set." unless $self->module
-
-    # this is a hack and should be optimized, but it is a dIngle::Base issue
-    ; dIngle->class_initialize("".$self->module)
-
-    ; if(dIngle->isdef("Build Module " . $self->module))
-        { my $obj = $self->module->buildobject
-        ; $obj->take("Build Module " . $self->module)
-        }
-      else
-        { $self->build_sites(%args)
-        }
-        
-    ; unless($args{'no_chunks'})
-        { my @chunks = $self->get_chunks(%args)
-        ; foreach my $chunk ( @chunks )
-            { next unless $self->prebuild_check($self->module,$chunk)
-            ; $self->build_chunk($chunk,%args)
-            }
-        }
-    ; return $self
     }
 
 ; sub build_sites
