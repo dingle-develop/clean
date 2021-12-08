@@ -16,8 +16,8 @@
 ; sub retrieve
     { my ($self,%args) = @_
     ; foreach my $k (sort keys %args)
-		{ _log("debug","Config param $k: $args{$k}")
-	    }
+        { _log("debug","Config param $k: $args{$k}")
+        }
     ; $self->{'__config__'} = dIngle::Conf->retrieve(%args)
     ; return $self->{'__config__'}
     }
