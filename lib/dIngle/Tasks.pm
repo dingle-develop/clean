@@ -69,11 +69,6 @@
     ; return lc(join "_", splice(@{[split(/::/, $self)]},1,2))
     }
 
-; sub Debug
-    { Carp::carp "Deprecated Function Debug"
-    ; ref() ? print Dumper($_) : print "$_\n" for @_
-    }
-
 ; sub setup_submodules
     { my ($pkg,@submodules) = @_
     ; my $class = ref($pkg) || $pkg
