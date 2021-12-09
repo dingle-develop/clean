@@ -15,6 +15,8 @@
 ; dIngle->hive($container)
 
 ; my $system = new dIngle::System
+; isa_ok($system, 'dIngle::Project')
+
 ; is [$system->get_submodules],[qw/I18N Tasks/],"default classes"
 
 ; my @modules = $system->modules->modules
