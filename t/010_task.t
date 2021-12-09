@@ -10,5 +10,6 @@
 ; my $task01 = new dIngle::Tasks::Task::({label => 'TEST'})
 
 ; is($task01->label,'TEST')
+; is($task01->backend,'generic')
 
 ; done_testing
