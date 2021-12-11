@@ -3,7 +3,7 @@
 errors=0
 
 function checkCommand () {
-	local COMMAND=$1 ; shift
+    local COMMAND=$1 ; shift
     if command -v $COMMAND &> /dev/null
     then
         echo "ok - Command ${COMMAND} is installed."
