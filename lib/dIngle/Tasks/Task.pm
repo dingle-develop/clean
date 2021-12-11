@@ -1,7 +1,7 @@
   package dIngle::Tasks::Task;
 # ****************************
-  our $VERSION = '0.01_001';
-# **************************
+  our $VERSION = '0.02';
+# **********************
 ; use strict; use warnings; use utf8
 
 ; use Ref::Util ()
@@ -9,6 +9,7 @@
 ; use HO::class
     _ro => label => '$',
     _ro => module => '$',
+    _rw => backend => sub { 'generic' },
     _rw => 'on_destroy' => '$',
     _rw => perform => '$',
     _rw => require  => '$',

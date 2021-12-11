@@ -164,7 +164,7 @@
 
     ; $self->load($modul)
     ; return dIngle::Formats->get_title
-	($formatmap{$project}{$modul}{$formatname})
+        ($formatmap{$project}{$modul}{$formatname})
     }
 
 ########################

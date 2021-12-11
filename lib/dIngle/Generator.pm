@@ -91,14 +91,13 @@
         }
     }
 
-# deprecated? vvvv
-
+############################
+# B U I L D
+############################
 ; sub build_module
     { my ($self,%args) = @_
-    ; Carp::croak "No module set." unless $self->module
-
-    # this is a hack and should be optimized, but it is a dIngle::Base issue
-    ; dIngle->class_initialize("".$self->module)
+    ; Carp::croak "No module set for build_module." 
+        unless $self->module( $args{'module'} )
 
     ; if(dIngle->isdef("Build Module " . $self->module))
         { my $obj = $self->module->buildobject
@@ -117,6 +116,25 @@
         }
     ; return $self
     }
+
+; sub build_sites
+    { my ($self,%args) = @_    
+    ; my @sites = $self->get_sites(%args)
+
+    ; foreach my $site ( @sites )
+        { next unless $self->prebuild_check($self->module,$site)
+        ; $self->build_site($site,%args)
+
+        ; # TODO use Class::Trigger?
+        ; if($args{'postbuild'})
+            {
+              $args{'postbuild'}->()
+            }
+        }
+    }
+
+# deprecated? vvvv
+
 
 ###################################
     
@@ -188,21 +206,7 @@
         }
     }
 
-; sub build_sites
-    { my ($self,%args) = @_    
-    ; my @sites = $self->get_sites(%args)
 
-    ; foreach my $site ( @sites )
-        { next unless $self->prebuild_check($self->module,$site)
-        ; $self->build_site($site,%args)
-
-        ; # TODO use Class::Trigger?
-        ; if($args{'postbuild'})
-            {
-              $args{'postbuild'}->()
-            }
-        }
-    }
     
 ; sub get_sites
     { my ($self,%args) = @_

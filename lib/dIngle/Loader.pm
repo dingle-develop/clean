@@ -165,7 +165,7 @@
 
 ; sub module_component
     { my ($self,$type,$module) = @_
-    ; my $project = dIngle->project
+    ; my $project = $module->project
 
     ; unless(defined $self->unit)
         { $self->by_ns($project->namespace,

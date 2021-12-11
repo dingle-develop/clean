@@ -58,7 +58,7 @@
         ; unless($config =~ m|/|)
             { $config = Path::Tiny::path( dIngle::Light->configpath)
                 ->child( $config . '.conf')
-	    }
+        }
         ; push @args, source => $config
         }
     ; push @args, 'instance',$args{'instance'} if $args{'instance'}

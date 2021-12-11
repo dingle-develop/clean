@@ -45,5 +45,5 @@ __END__
 
 =head1 NAME
 
-dIngle::Hive::API - the ppublic functions used in task definitions
+dIngle::Hive::API - the public functions used for task definition
 
