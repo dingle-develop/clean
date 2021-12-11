@@ -17,18 +17,12 @@
   ; $mka->($self,'project')
   ; $mka->($self,'hive')
   ; $mka->($self,'context')
-  
-  #; $mka->($self,'module')
-  #; $mka->($self,'currentmodule')
-  #; $mka->($self,'format_type')    # really required ??? --> Im Moment ja siehe dIngle::Field - 425ff
-  #; $mka->($self,'backend')
-  #; $mka->($self,'object','dIngle')
   }
 
 #############################
 # Class methods also used by dIngle::Object
 #############################
-; import from:: 'dIngle::Loader' => ('load')
+; use Package::Subroutine 'dIngle::Loader' => ('load')
 
 ; sub configuration
     { return $_[0]->project->configuration
@@ -40,6 +34,28 @@
         unless defined $value
     ; return $value
     }
+    
+; sub isdef
+    { my ($obj,$key)=@_
+    ; dIngle->hive->exists($key)
+    }
+    
+
+############################
+# Development
+############################
+; sub dump
+    { shift;
+    ; warn Data::Dumper::Dumper(@_),"\n"
+    ; Carp::carp("dump - from ")
+    }
+
+sub debug
+    { warn "\n@_\n"
+    ; Carp::carp("debug - from ")
+    }
+
+######## DEPRECATED ? ###########
 
 ; my $i18n_setup = 0
 
@@ -173,19 +189,6 @@
     ; return $class
     }
 
-############################
-# Development
-############################
-; sub dump
-    { shift;
-    ; warn Data::Dumper::Dumper(@_),"\n"
-    ; Carp::carp("dump - from ")
-    }
-
-sub debug
-    { warn "\n@_\n"
-    ; Carp::carp("debug - from ")
-    }
 
 ; sub carp_task
     { my $self = shift
