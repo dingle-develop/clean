@@ -8,8 +8,12 @@
 ; use dIngle ()
 
 ; my @class_methods = qw/
+    config
+    configuration
     debug
-    dump 
+    dump
+    isdef
+    load
 /
 
 ; ok(dIngle->can($_),"dIngle can $_") foreach @class_methods
