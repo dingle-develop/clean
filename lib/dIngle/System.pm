@@ -1,6 +1,6 @@
   package dIngle::System;
 # ***********************
-  our $VERSION='0.03';
+  our $VERSION='0.04';
 # ********************
 ; use strict; use warnings; use utf8
 
@@ -13,7 +13,6 @@
     ; $self->structurepath(['Structure'])
     ; $self->set_namespace( 'dIngle' )
     ; $self->load_modules
-    #; dIngle::Waypoint::Init->project($self)
     ; $self
     }
 
