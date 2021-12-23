@@ -27,6 +27,11 @@
         }
     ; $self->[&_container]->{$task->backend}->insert_task($task)
     }
+    
+; sub take
+    { my ($self,$task,@args) = @_
+    ; 
+    }
 
 ; 1
 

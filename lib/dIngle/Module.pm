@@ -61,9 +61,9 @@
            ->buildable($def->[3])
     }
     
-; sub buildobject
+; sub build_object
     { my $self = shift
-    ; my $object = new dIngle::Object('project' => $self->project, @_)
+    ; my $object = new dIngle::Object::('project' => $self->project, @_)
     ; dIngle->object($object)
     ; $object
     }

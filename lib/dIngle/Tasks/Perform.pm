@@ -1,6 +1,6 @@
   package dIngle::Tasks::Perform
 # ******************************
-; our $VERSION='0.01'
+; our $VERSION='0.02'
 # *******************
 
 ############################
@@ -12,10 +12,10 @@
     ; $Carp::CarpLevel++
     ; my ($r,@r)
     ; if( wantarray )
-        { @r = dIngle->object->take(@args)
+        { @r = dIngle->hive->take(@args)
         }
       else
-        { $r = dIngle->object->take(@args)
+        { $r = dIngle->hive->take(@args)
         }
     ; $Carp::CarpLevel--
     ; wantarray ? @r : $r

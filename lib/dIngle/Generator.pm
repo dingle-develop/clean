@@ -4,16 +4,9 @@
 # ********************
 ; use strict; use warnings; use utf8
 
-; use dIngle::Hive::Container
+; use dIngle::Hive
 
 ; use Carp ()
-
-# Changes
-# 0.3 -- 2008-01-09
-#    * cleanup because Code::Loader seems to work reliable
-# 0.4 -- 2008-01-22
-#    * first try to use HO::class
-# TODO: use dIngle Error -- hier machts eigentlich mal Sinn
 
 ############################
 # C L A S S
@@ -44,7 +37,7 @@
 ; sub setup_hive
     { my ($self) = @_
     # only a single container hive so far
-    ; my $container = new dIngle::Hive::Container::
+    ; my $container = new dIngle::Hive::
     ; $self->[&_hive] = $container
     ; dIngle::Waypoint::Init->hive($container)
     ; return $container
@@ -132,6 +125,26 @@
             }
         }
     }
+    
+; sub get_sites
+    { my ($self,%args) = @_
+    ; my @sites = dIngle::Formats->load($self->module)
+
+    ; if( $args{'filter_formats'} ) 
+        { if( $args{'filter_formats'} eq "equal" )
+            { @sites = grep { $_->{'VisFile'} eq $args{'filter_expr'} } @sites
+            }
+          elsif( $args{'filter_formats'} eq "match" )
+            { @sites = grep { $_->{'VisFile'} =~ /$args{'filter_expr'}/ } @sites
+            }
+          elsif( $args{'filter_formats'} eq "match-not" )
+            { @sites = grep { $_->{'VisFile'} !~ /$args{'filter_expr'}/ } @sites
+            }
+        }
+
+    ;  return @sites
+    }
+
 
 # deprecated? vvvv
 
@@ -208,24 +221,6 @@
 
 
     
-; sub get_sites
-    { my ($self,%args) = @_
-    ; my @sites = dIngle::Formats->load($self->module)
-
-    ; if( $args{'filter_formats'} ) 
-        { if( $args{'filter_formats'} eq "equal" )
-            { @sites = grep { $_->{'VisFile'} eq $args{'filter_expr'} } @sites
-            }
-          elsif( $args{'filter_formats'} eq "match" )
-            { @sites = grep { $_->{'VisFile'} =~ /$args{'filter_expr'}/ } @sites
-            }
-          elsif( $args{'filter_formats'} eq "match-not" )
-            { @sites = grep { $_->{'VisFile'} !~ /$args{'filter_expr'}/ } @sites
-            }
-        }
-
-    ;  return @sites
-    }
 
 ; sub prebuild_check
     { my ($self,$module,$site) = @_

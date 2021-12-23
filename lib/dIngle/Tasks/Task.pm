@@ -8,7 +8,7 @@
 
 ; use HO::class
     _ro => label => '$',
-    _ro => module => '$',
+    _ro => module => sub { scalar caller(2) . "::" },
     _rw => backend => sub { 'generic' },
     _rw => 'on_destroy' => '$',
     _rw => perform => '$',

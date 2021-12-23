@@ -7,6 +7,7 @@
 ; my @list =
     # Name                 , Short       , Prefix  , Buildable
     ([ 'Build'             , 'Build'     , 'Build' , 0]
+    ,[ 'Shell'             , 'Sys'       , 'System', 0]
     ,[ 'Utilities'         , 'Util'      , 'U'     , 0]
     )
 

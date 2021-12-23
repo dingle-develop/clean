@@ -16,7 +16,11 @@
     ; my $task = new dIngle::Tasks::Task::({
         label => $id,
         module => $module,
-        on_destroy => sub { dIngle->hive->insert_task(shift) }
+        on_destroy => sub 
+            { my $self = shift
+            ; dIngle->hive->insert_task($self)
+            ; $self->on_destroy(undef)
+            }
       })
     ; if($perform)
         { unless( Ref::Util::is_coderef($perform) )
@@ -31,12 +35,14 @@
     { my $key=shift
     ; my @arg=@_
     ; sub { my $obj=shift(@_)
-         # ; print "KEY $key\n"
-         # ; print join ".", @_
-         # ; print "\n"
           ; my @args=(@arg,@_)
           ; $obj->take($key,@args)
           }
+    }
+
+; sub const
+    { my @const=@_
+    ; sub { wantarray ? @const : $const[0] } 
     }
 
 ; 1

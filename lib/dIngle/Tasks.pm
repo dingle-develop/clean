@@ -40,7 +40,7 @@
                 }
             }
 
-        ; export from 'dIngle::Hive::API' => qw/task alias/
+        ; export from 'dIngle::Hive::API' => qw/alias const task/
         ; export from 'dIngle::Tasks::Perform' => qw/make prepare/
         ; export from 'dIngle::Tasks::Contract' => qw/requires ensures valid/ 
         #; export from 'dIngle::Hive' => qw/alias vchestf vcmodf chadd const tconst/

@@ -47,6 +47,14 @@
     { my ($self, $task) = @_
     ; $self->_current->insert_task($task)
     }
+    
+; sub take
+    { my ($self, $context, $task, @args) = @_
+    ; foreach my $layer (reverse $self->layer)
+        { return $layer->take($context, $task, @args) if $layer->exists($task)
+        }
+    ; _log_store("error","Task \"$task\" not found.")
+    }
 
 ; 1
 
