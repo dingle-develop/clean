@@ -5,6 +5,7 @@
 ; use strict; use warnings; use utf8
 
 ; use dIngle::Loader ()
+; use dIngle::Registry ()
 
 ; our $LOGGING # which Logging method (log4perl, private, testing, FileSimple,...)
 ; our $ALL_LANGUAGES = 0 # build with all available languages
@@ -14,8 +15,10 @@
 #############################
 ; { use Class::Data::Localize
   ; my ($mka,$self) = (\&Class::Data::Localize::mk_classdata,__PACKAGE__)
+  ; $mka->($self,'backend','dIngle::Registry::Backends')
   ; $mka->($self,'project')
   ; $mka->($self,'hive')
+  ; $mka->($self,'register', dIngle::Registry->new)
   ; $mka->($self,'context')
   }
 
