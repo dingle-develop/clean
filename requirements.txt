@@ -6,6 +6,7 @@ Config::General~0
 File::Monitor~0
 Getopt::Lucid~0
 Hash::Merge~0
+List::Util~0
 Locale::Maketext~0
 Package::Subroutine~0
 parent~0
