@@ -49,11 +49,13 @@
     }
     
 ; sub take
-    { my ($self, $context, $task, @args) = @_
+    { my ($self, %args) = @_
     ; foreach my $layer (reverse $self->layer)
-        { return $layer->take($context, $task, @args) if $layer->exists($task)
+        { if(my $task = $layer->take(%args) )
+            { return $task
+            }
         }
-    ; _log_store("error","Task \"$task\" not found.")
+    ; return ()
     }
 
 ; 1

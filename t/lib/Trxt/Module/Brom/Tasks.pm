@@ -29,7 +29,6 @@ __HTML__
 
     ; return make("DOCTYPE Frameset Document",$frs)
     })
-
     
     }
 

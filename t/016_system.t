@@ -10,7 +10,7 @@
 
 ; use dIngle::System
 
-; my $sys = new dIngle::System
+; my $sys = new dIngle::System::
 
 ; is($sys->name,'dIngle::System')
 

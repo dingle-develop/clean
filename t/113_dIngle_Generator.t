@@ -16,12 +16,13 @@
 
 ; my $gen = new dIngle::Generator::
 
+; $gen->hive->add_layer($project->name)
 ; $gen->setup_project( project => new dIngle::System:: )
 
 ; ok($gen->hive->exists("NO OP"),"System Utilities loaded")
 
 ; is($gen->project->name,"Trxt","Project global set")
-; isa_ok($gen->hive,["dIngle::Hive::Container"],"only during development valid - FIXIT")
+; isa_ok($gen->hive,["dIngle::Hive"],"Hive")
 ; isa_ok($gen->module($module),['dIngle::Generator'],"check fluent interface")
 ; isa_ok($gen->module,['dIngle::Module'],"check module getter/setter")
 

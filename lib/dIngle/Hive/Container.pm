@@ -4,23 +4,32 @@
 # ********************
 ; use strict; use warnings; use utf8
 
-; use parent 'Subroutine::Container::Contractual'
+; use HO::class
+    _ro => tasks => '%';
 
 ; sub insert_task
     { my ($self,$task) = @_
     ; my $id = $task->label
     ; my $module = $task->module
-    
-    ; my $code = {}
-    ; foreach my $action (qw/require perform ensure/)
-        { if( $task->$action )
-            { $code->{$action} = sub{ $task->$action }
-            }
-        }
-    ; $self->insert_always($id,$code)
+    ; $self->[&_tasks]->{$id} = $task
     ; dIngle::Log->get_logger('dIngle')->debug("insert [$id] from $module.")
+    }
+
+; sub exists
+    { my ($self,$key)=@_
+    ; CORE::exists $self->[&_tasks]->{$key}
+    }
+    
+; sub take
+    { my ($self,$key) = @_
+    ; return $self->[&_tasks]->{$key}
     }
 
 ; 1
 
 __END__
+
+=head1 NAME
+
+dIngle::Hive::Container
+

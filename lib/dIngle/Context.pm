@@ -8,17 +8,34 @@
 ; use ReleaseAction ()
 ; use subs 'init'
 
+; use dIngle::Log (_log_store => 'dIngle.builder.progress')
+
 ; use HO::class
     _ro => hive => '$',
+    _lvalue => task => '$',
     _rw => object => '$',
     _rw => stash => '%',
-    _ro => backend => sub { 'generic' },
+    _ro => backend => [ '$', sub { dIngle->backend->generic } ],
+    _ro => fallbacks => [ '$', sub { [dIngle->backend->generic] } ],
     init => 'hash'
     
 ; sub take 
-    { my ($context, $task, @args) = @_
-    ; local $Carp::CarpLevel += 1
-    ; return $context->hive->take($context, $task, @args) 
+    { my ($self, $task) = @_
+    ; foreach my $backend ( $self->get_backends )
+        { if(my $task = $self->hive->take(task => $task, backend => $backend))
+            { return $task
+            }
+        }
+    ; _log_store("error","Task \"$task\" is undefined.")
+    ; if( $self->hive->exists("Error - Task undefined") ) 
+        { return $self->take("Error - Task undefined")
+        }
+    ; Carp::croak("Task \"$task\" undefined.") 
+    }
+    
+; sub run
+    { my ($self,$task,@args) = @_
+    ; return $self->take($task)->run($self,@args)
     }
     
 ; sub set_backend
@@ -30,8 +47,16 @@
         }
     ; $self
     }
+    
+; sub get_backends
+    { my ($self) = @_
+    ; return ($self->backend, grep { $_ ne $self->backend } @{$self->fallbacks})
+    }
 
 ; 1
 
 __END__
 
+=head1 NAME
+
+dIngle::Context - 

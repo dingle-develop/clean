@@ -12,15 +12,16 @@
 ; isa_ok(dIngle->load,"dIngle::Loader")
 
 ; my $project = Trxt::Project->new
+; dIngle->register->backend('generic',$project)
 
 # context is ne, so this is temporary here
 ; use dIngle::Context
 ; use dIngle::Hive::Container
 ; my $context = new dIngle::Context::
-    ( container => new dIngle::Hive::Container
+    ( hive => new dIngle::Hive::Container::
     )
     
-; dIngle->context( $context )
+; dIngle->context($context)
     
 ; my $structure = dIngle->load('new')->structure("Std::Root")
 ; isa_ok($structure,'dIngle::Structure')

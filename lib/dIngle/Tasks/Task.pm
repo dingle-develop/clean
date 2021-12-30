@@ -20,6 +20,38 @@
     { my $self = shift
     ; $self->on_destroy->($self) if Ref::Util::is_coderef($self->on_destroy)
     }
+    
+; sub run
+    { my ($self,$context,@args) = @_
+    ; $context->task = $self
+    ; my $key = $self->label
+
+    ; if( $self->require )
+        { unless( $self->require->($context,@args) )
+            { Carp::carp "Failure during check of arguments for $key."
+            ; return undef
+            }   
+        }
+    ; unless( $self->ensure )
+        { return $self->perform->($context, @args)
+        }
+    ; if( wantarray )
+        { my @result = $self->perform->($context, @args)
+        ; unless( $self->ensure->($context, @result) )
+            { Carp::carp "Failure during check of \@result from $key."
+            ; return ()
+            }
+        ; return @result
+        }
+      else
+        { my $result = $self->perform->($context, @args)
+        ; unless( $self->ensure->($context, $result) )
+            { Carp::carp "Failure during check of \$result from $key."
+            ; return undef
+            }
+        ; return $result
+        }
+    }
 
 ; 1
 

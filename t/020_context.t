@@ -5,14 +5,41 @@
 
 ; use Test2::V0
 
-; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
-; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
+#; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
+#; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
 
+; use dIngle::Hive
 ; use dIngle::Context
+; use dIngle::System
+; use dIngle::Tasks::Task
 
-; my $context = new dIngle::Context::
+; my $system = new dIngle::System::
+; dIngle->register->backend('generic',$system)
+; is(dIngle->backend->generic, 'generic')
 
+; my $hive = new dIngle::Hive ()
+; $hive->add_layer("default")
 
-; ok(1)
+; my $task = new dIngle::Tasks::Task::(
+    { label => "test"
+    , perform => sub { 'run tests' }
+    })
+
+; $hive->insert_task($task)
+
+; my $context = new dIngle::Context::(hive => $hive)
+
+; $context->stash->{'hallo'} = "Welt!"
+; is($context->stash->{'hallo'}, "Welt!")
+
+; is($context->backend,'generic',"default backend")
+; is([$context->get_backends],[dIngle->backend->generic])
+
+; { $context->set_backend('mason', my $temp)
+  ; is($context->backend,'mason','temporary use mason backend')
+  }
+; is($context->backend,'generic',"back at default backend")
+
+; is($context->run("test"),'run tests');
 
 ; done_testing()

@@ -4,6 +4,8 @@
 # ********************
 ; use strict; use warnings
 
+; use List::Util ()
+
 ; use dIngle::Log (_log_store => 'dIngle.builder.progress')
 
 ; use dIngle::Hive::Container
@@ -29,8 +31,13 @@
     }
     
 ; sub take
-    { my ($self,$task,@args) = @_
-    ; 
+    { my ($self,%args) = @_
+    ; if(  CORE::exists $self->container->{$args{'backend'}} )
+        { if( $self->container->{$args{'backend'}}->exists($args{'task'}) )
+            { return $self->container->{$args{'backend'}}->take($args{'task'})
+            }
+        }
+    ; return ()
     }
 
 ; 1

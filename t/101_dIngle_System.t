@@ -3,10 +3,11 @@
 
 ; use Test2::V0
 
+; use dIngle::Context
 ; use dIngle::System
 ; use dIngle::Hive::Container
 
-; use Data::Dumper
+; plan(6)
 
 #; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
 #; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
@@ -14,7 +15,8 @@
 ; my $container = new dIngle::Hive::Container::
 ; dIngle->hive($container)
 
-; my $system = new dIngle::System
+; my $system = new dIngle::System::
+; dIngle->register->backend('generic',$system)
 ; isa_ok($system, 'dIngle::Project')
 
 ; is [$system->get_submodules],[qw/I18N Tasks/],"default classes"
@@ -30,6 +32,8 @@
         }
     }
     
-; is($container->take("NO OP"),'','running NO OP')
+; my $context = new dIngle::Context::
+    
+; is($container->take("NO OP")->run($context),'','running NO OP')
 
 ; done_testing()
