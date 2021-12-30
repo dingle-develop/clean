@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 errors=0
 
@@ -13,7 +13,9 @@ function checkCommand () {
     fi 	
 }
 
+checkCommand perl
 checkCommand cpanm
+checkCommand git
 
 if [ $errors == 0 ] ; then
     echo "# Success - environment has the required commands."
