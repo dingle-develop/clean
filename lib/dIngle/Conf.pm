@@ -28,7 +28,7 @@
 
 ; sub detect_instance
     { my ($pkg,$configfile)=@_
-	; $configfile ||= 'instances.conf'
+    ; $configfile ||= 'instances.conf'
     ; my $instanceconfig = Path::Tiny::path($_configpath)->child($configfile)
 
     ; my $instance = dIngle::Instance->new()
