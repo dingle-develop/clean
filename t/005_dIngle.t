@@ -11,6 +11,7 @@
     backend
     config
     configuration
+    context
     debug
     dump
     isdef
