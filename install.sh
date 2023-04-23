@@ -18,7 +18,7 @@ if [ -d vendor/p5-app-dingle ] ; then
     ( cd vendor/p5-app-dingle ; git pull --no-rebase)
 else
     ( cd vendor; git clone https://github.com/dingle-develop/p5-app-dingle.git)
-    ln -s ../vendor/p5-app-dingle/dingle bin/dingle
+    ln -sf ../vendor/p5-app-dingle/dingle bin/dingle
 fi
 
 bin/dingle sitelib
