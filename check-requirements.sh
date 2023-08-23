@@ -26,6 +26,7 @@ function helpCpanminus () {
 checkCommand perl
 checkCommand cpanm || helpCpanminus
 checkCommand git
+checkCommand make
 
 if [ $errors == 0 ] ; then
     echo "# Success - environment has the required commands."
