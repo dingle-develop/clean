@@ -3,6 +3,7 @@ basis~0
 Carp::Always~0
 Class::Data::Localize~0
 Config::General~0
+File::chdir~0
 File::Monitor~0
 Getopt::Lucid~0
 Hash::Merge~0
