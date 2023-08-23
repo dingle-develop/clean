@@ -7,14 +7,24 @@ function checkCommand () {
     if command -v $COMMAND &> /dev/null
     then
         echo "ok - Command ${COMMAND} is installed."
+        return 0
     else
         echo "not ok - Command ${COMMAND} could not be found"
         ((errors+=1))
+        return 1
     fi 	
 }
 
+function helpCpanminus () {
+    if [ -f /etc/pacman.conf ] ; then
+        echo "# Maybe you can install missing command with 'pacman -S cpanminus'."
+    else
+        echo "# Maybe you can install missing command with 'cpan -i App::cpanminus'"
+    fi 
+}
+
 checkCommand perl
-checkCommand cpanm
+checkCommand cpanm || helpCpanminus
 checkCommand git
 
 if [ $errors == 0 ] ; then
