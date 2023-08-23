@@ -6,8 +6,14 @@
 
 ; use Carp ()
 ; use Ref::Util ()
+; use Package::Subroutine ()
 ; use dIngle::Log ()
 ; use dIngle::Tasks::Task ()
+
+; sub import
+    { my ($package,@imports) = @_
+    ; export Package::Subroutine::( _ => @imports)
+    }
 
 ; sub task
     { my ($id,$perform)=@_
