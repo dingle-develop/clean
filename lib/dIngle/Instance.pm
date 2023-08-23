@@ -1,13 +1,8 @@
   package dIngle::Instance
 # ************************
-; our $VERSION = '0.01'
+; our $VERSION = '0.02'
 # *********************
 ; use strict; use warnings; use utf8
-
-# Changes:
-# 0.01 - 2009-07-10
-#    - initiale Version noch ohne logische Verknüpfungen
-#    - nur hostname und os werden unterstützt
 
 ; use HO::class
     _rw => name => '$',
