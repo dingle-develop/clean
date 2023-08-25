@@ -15,27 +15,27 @@
 # add loader to @INC
 ; BEGIN:
    { unshift @INC , sub
-	    { my ($sub,$mod) = @_
-	    ; if(exists($mods{ $mod }))
-	        { my $filename = Path::Tiny::path($libs{ $mod })
-				    ->child( $mods{ $mod } )
-				    ->child( 'lib' )->child( $mod )
-	        ; open (my $fh, "<", $filename)
-	        ; $INC{$mod} = $filename
-	        ; return $fh
-	        }
-	    ; return
-	    }
-	}
-	
+        { my ($sub,$mod) = @_
+        ; if(exists($mods{ $mod }))
+            { my $filename = Path::Tiny::path($libs{ $mod })
+                    ->child( $mods{ $mod } )
+                    ->child( 'lib' )->child( $mod )
+            ; open (my $fh, "<", $filename)
+            ; $INC{$mod} = $filename
+            ; return $fh
+            }
+        ; return
+        }
+    }
+    
 
 ; my $load_config = sub
     { my ($path,$file) = @_
-	; my $sitelib = Path::Tiny::path($path)->child($file)
-	; unless ( -f $sitelib or -l $sitelib )
-	    { Carp::carp "No configuration $sitelib found."
-		; return ()
-	    }
+    ; my $sitelib = Path::Tiny::path($path)->child($file)
+    ; unless ( -f $sitelib or -l $sitelib )
+        { Carp::carp "No configuration $sitelib found."
+        ; return ()
+        }
     ; return Config::General->new(-ConfigFile => $sitelib)->getall;
     }
 
@@ -49,33 +49,33 @@
     
 ; sub use_library
     { my ($pack,$config) = @_ 
-	; my $path = dIngle::Light->configpath
-	; my $base = dIngle::Light->basepath
-	; my %conf = $load_config->($path,$config)
-	; my $dir = $conf{'directoryname'} 
-	     || Path::Tiny::path($config)->basename('.conf')
-	; my $lib = $real_lib->($dir,$base)
-	; for my $source (@repositories)
-	    { for my $account (keys %{$conf{$source}})
-	        { while( my ($repo,$modlist) =
-	             each(%{$conf{$source}{$account}{'repo'}}))
-	               { for my $module (keys %$modlist)
-	                   { $module =~ s/::/\//g
-	                   ; $mods{ "$module.pm" } = $repo
-	                   ; $libs{ "$module.pm" } = $lib
-	   }}}}	
-	}
-	
+    ; my $path = dIngle::Light->configpath
+    ; my $base = dIngle::Light->basepath
+    ; my %conf = $load_config->($path,$config)
+    ; my $dir = $conf{'directoryname'} 
+         || Path::Tiny::path($config)->basename('.conf')
+    ; my $lib = $real_lib->($dir,$base)
+    ; for my $source (@repositories)
+        { for my $account (keys %{$conf{$source}})
+            { while( my ($repo,$modlist) =
+                 each(%{$conf{$source}{$account}{'repo'}}))
+                   { for my $module (keys %$modlist)
+                       { $module =~ s/::/\//g
+                       ; $mods{ "$module.pm" } = $repo
+                       ; $libs{ "$module.pm" } = $lib
+       }}}} 
+    }
+    
 ; sub import
     { my ($pack, @configs ) = @_
-	; local $_
-	; $pack->use_library( $_ ) for @configs
+    ; local $_
+    ; $pack->use_library( $_ ) for @configs
     }
     
 ; sub get_library
     { my ($pack) = @_
-	; return map { [ $_ , $mods{$_} , "$libs{$_}" ] } sort keys %mods
-	}
+    ; return map { [ $_ , $mods{$_} , "$libs{$_}" ] } sort keys %mods
+    }
 
 ; 1
 
