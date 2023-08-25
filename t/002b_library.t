@@ -4,10 +4,11 @@
 ; use Test::dIngle::Light
 ; use strict; use warnings
 
-; use Test::More tests => 3
-; use Test::Exception
+; use Test2::V0 ('isnt','plan')
 
-; use_ok('dIngle::Library', 'site-lib.conf')
+; use dIngle::Library ('site-lib.conf')
+
+; plan(1)
 ; isnt( scalar dIngle::Library->get_library, 0,"site lib loaded" )
 
-; use_ok("Shari::Code::Loader")
+; use Shari::Code::Loader
