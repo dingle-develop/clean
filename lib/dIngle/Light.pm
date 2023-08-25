@@ -51,3 +51,29 @@ __END__
 =head1 NAME
 
 dIngle::Light - the basic informations
+
+=head1 SYNOPSIS
+
+   say dIngle::Light->basepath;
+   say dIngle::Light->configpath;
+
+=head1 DESCRIPTION
+
+A complex software needs needs some foundational information. This
+information should be defined in one place. The Light shines over the
+whole project - this is where the name comes.
+
+=head2 Class Methods
+
+=over 4
+
+=item C<basepath>
+
+This could be set with environment variable  C<DINGLE_BASE_PATH>.
+Usually it is the place where dIngle is installed.
+
+=item C<configpath>
+
+The place where the configuration files reside.
+
+=back
