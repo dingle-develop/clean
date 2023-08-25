@@ -14,14 +14,14 @@
     ; my $A  = $st->area_setter()    
     
    	# Content Root
-    ; my $tab = $obj->take("TAB ROOT")
+    ; my $tab = Table(); #$obj->take("TAB ROOT")
     
     ; my ($hp,$bp) =Td()->valign("top")->copy(2)
     ; $hp->id('sitehead')->insert("<!-- Kopfbereich -->\n")
     ; $bp->id('sitebody')->insert("<!-- Datenbereich -->\n")
     
     ; $tab << Tr($hp) << Tr($bp)
-	
+
     ; &$A( "dIngle Header"  , $hp )
     ; &$A( "dIngle Content" , $bp )
     ; my $dbg = node()

@@ -22,7 +22,7 @@
     ; &$A("dIngle Style" ,$doc->get_area("style"))
     ; &$A("dIngle Script",$doc->get_area("script"))
     ; &$A("dIngle Head"  ,$doc->get_area("head"))
-    ; $obj->take("dIngle BodyAttrib",$doc->get_area("body"))
+    ; #$obj->take("dIngle BodyAttrib",$doc->get_area("body"))
     ; &$A("dIngle Body"  ,$doc->get_area("body"))
 
     ; $st->set_root( $doc )
