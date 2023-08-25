@@ -1,3 +1,4 @@
 Devel::Cover~1.36
+IO::String~1.05
 Test2::Suite~0
 Test::Output~0
