@@ -4,7 +4,7 @@
   our $VERSION='0.07';
 # ********************
 
-; use YAML::Syck
+#; use YAML::Syck
 ; use dIngle::Log ( _logger => 'dIngle.i18n' )
 
 # Changes:
