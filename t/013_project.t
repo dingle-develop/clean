@@ -33,6 +33,9 @@
 
 ; ok(scalar dIngle->project->modules->modules,'Modules found')
 
+; my @modulenames = sort map { $_->name } dIngle->project->list_modules;
+; is([@modulenames],['Brom'],'module names')
+
 ; diag( "Test an empty project")
 
 ; my $empty = new dIngle::Project:: 

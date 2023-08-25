@@ -38,5 +38,16 @@ some time again.
 
 This loads what is required to run a dIngle application.
 
+=item L<dIngle::Conf>
+
 =back
 
+=head2 Core Concepts
+
+=over4
+
+=item L<dIngle::Context>
+
+=item L<dIngle::Project>
+
+=back
