@@ -10,6 +10,13 @@
 
 ; use dIngle::Log (_log_store => 'dIngle.builder.progress')
 
+; use dIngle
+# at least the generic backend is required to use this context
+; BEGIN 
+    { dIngle->register->backend('generic') unless
+        dIngle->backend->can('generic')
+    }
+
 ; use HO::class
     _ro => hive => '$',
     _lvalue => task => '$',
