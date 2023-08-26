@@ -21,8 +21,8 @@
     }
     
 ; sub take
-    { my ($self,$key) = @_
-    ; return $self->[&_tasks]->{$key}
+    { my ($self,%args) = @_
+    ; return $self->[&_tasks]->{ $args{'task'} }
     }
 
 ; 1

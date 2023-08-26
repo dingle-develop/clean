@@ -34,7 +34,7 @@
     { my ($self,%args) = @_
     ; if(  CORE::exists $self->container->{$args{'backend'}} )
         { if( $self->container->{$args{'backend'}}->exists($args{'task'}) )
-            { return $self->container->{$args{'backend'}}->take($args{'task'})
+            { return $self->container->{$args{'backend'}}->take(task => $args{'task'})
             }
         }
     ; return ()
