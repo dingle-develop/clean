@@ -1,8 +1,7 @@
   package dIngle::Manual
 # **********************
  
-use strict;
-use warnings;
+; use strict; use warnings;
 
 our $VERSION = '0.001';
  
