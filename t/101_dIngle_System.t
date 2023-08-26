@@ -34,6 +34,6 @@
     
 ; my $context = new dIngle::Context::
     
-; is($container->take("NO OP")->run($context),'','running NO OP')
+; is($container->take("task" => "NO OP")->run($context),'','running NO OP')
 
 ; done_testing()
