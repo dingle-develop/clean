@@ -24,6 +24,10 @@
     { my ($self,%args) = @_
     ; return $self->[&_tasks]->{ $args{'task'} }
     }
+    
+; sub list_tasks
+    { return keys %{$_[0]->[&_tasks]}
+    }
 
 ; 1
 
