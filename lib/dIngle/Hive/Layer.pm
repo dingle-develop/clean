@@ -11,8 +11,10 @@
 ; use dIngle::Hive::Container
 
 ; use HO::class
+    _ro => name => '$',
     _ro => container => '%',
-    _method => create_container => sub { new dIngle::Hive::Container:: }
+    _method => create_container => sub { new dIngle::Hive::Container:: },
+    init => 'hash'
      
 ; sub exists
     { my ($self, $name) = @_
