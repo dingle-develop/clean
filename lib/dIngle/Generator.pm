@@ -5,6 +5,7 @@
 ; use strict; use warnings; use utf8
 
 ; use dIngle::Hive
+; use dIngle::Context ()
 
 ; use Carp ()
 
@@ -16,6 +17,7 @@
 ; use HO::class
     _ro     => project => '$',
     _ro     => hive    => '$',
+    _ro     => context => '$',
     _lvalue => _module => '$',
     _rw     => formats => '@',
     _rw     => styles  => '@'
@@ -71,17 +73,29 @@
 ; sub setup_project
     { my ($self, %args) = @_
     ; my $project = delete($args{'project'}) || $self->project
+    ; my $module_arg  = delete($args{'module'})
+    ; my $modules_arg = delete($args{'modules'})
 
+    ; my %modules_arg = map { $_ => 1 } @$modules_arg if $modules_arg
+    ; $modules_arg{$module_arg} = 1 if $module_arg
+    
     ; my @modules = $project->modules->modules
+    
     ; my @submodules = $project->get_submodules
 
     ; foreach my $module (@modules)
-        { foreach my $class (@submodules)
+        { next if %modules_arg && !exists($modules_arg{$module->name})
+        ; foreach my $class (@submodules)
             { if( (my $unit = $module->submodule_unit($class))->is_ready)
                 { $unit->modulename->setup
                 }
             }
         }
+    }
+    
+; sub setup_context
+    { my ($self) = @_
+    ; $self->[&_context] = new dIngle::Context::(hive => $self->hive)
     }
 
 ############################
@@ -320,23 +334,6 @@ dIngle::Generator - bookkeeping for the generating environment
 
 =head1 DESCRIPTION
 
-This module uses a pseudo singleton as default object. So each method
-could be called statically too. If you want to subclass this package
-you should import the function C<_generator> to keep this behavior intact.
-
-    package Generator::Plus;
-
-    use dIngle::Generator ('_generator');
-    our @ISA = ('dIngle::Generator');
-
-    sub method {
-        my $self = _generator(shift())
-        ...
-    }
-
-=head2 C<new>
-
-Very simple constructor without arguments.
 
 =head2 Properties
 
