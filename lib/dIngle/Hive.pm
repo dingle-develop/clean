@@ -14,11 +14,13 @@
     _ro => layer => '@',
     _ro => layermap => '%',
     _lvalue => _current => '$',
-    _method => create_layer => sub { new dIngle::Hive::Layer:: }
+    _method => create_layer => sub {
+        return new dIngle::Hive::Layer:: (name => $_[1]) 
+    }
 
 ; sub add_layer
     { my ($self, $name) = @_
-    ; my $layer = $self->create_layer
+    ; my $layer = $self->create_layer($name)
     ; push @{$self->[_layer]}, $layer
     ; $self->layermap->{$name} = $layer
     ; $self->_current = $layer
@@ -56,6 +58,20 @@
             }
         }
     ; return ()
+    }
+    
+; sub dump
+    { my ($self) = @_
+    ; my @result
+    ; foreach my $layer ($self->layer)
+        { my @layer = ($layer->name, [])
+        ; foreach my $container (sort keys %{$layer->container})
+            { my @tasks = sort $layer->container->{$container}->list_tasks
+            ; push @{$layer[1]}, [$container, \@tasks]
+            }
+        ; push @result, \@layer
+        }
+    ; \@result
     }
 
 ; 1
