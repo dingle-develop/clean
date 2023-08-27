@@ -48,13 +48,17 @@
     }
     
 ; sub use_library
-    { my ($pack,$config) = @_ 
-    ; my $path = dIngle::Light->configpath
-    ; my $base = dIngle::Light->basepath
-    ; my %conf = $load_config->($path,$config)
+    { my ($pack,$config) = @_
+    ; my %config = ref($config) ? %$config : (file => $config)
+    ; $config{'file'}       ||= 'site-lib.conf'
+    ; $config{'configpath'} ||= dIngle::Light->configpath
+    ; $config{'basepath'}   ||= dIngle::Light->basepath
+
+    ; my %conf = $load_config->($config{'configpath'},$config{'file'})
     ; my $dir = $conf{'directoryname'} 
-         || Path::Tiny::path($config)->basename('.conf')
-    ; my $lib = $real_lib->($dir,$base)
+         || Path::Tiny::path($config{'file'})->basename('.conf')
+
+    ; my $lib = $real_lib->($dir,$config{'basepath'})
     ; for my $source (@repositories)
         { for my $account (keys %{$conf{$source}})
             { while( my ($repo,$modlist) =
