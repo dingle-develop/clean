@@ -75,5 +75,6 @@ Usually it is the place where dIngle is installed.
 =item C<configpath>
 
 The place where the configuration files reside.
+This could be set with environment variable C<DINGLE_CONFIG_PATH>.
 
 =back
