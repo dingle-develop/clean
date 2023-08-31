@@ -12,7 +12,11 @@ __END__
 
 dIngle::Manual - The manual for dIngle developers
 
-=head2 Foundations
+=head1 DESCRIPTION
+
+
+
+=head2 The Foundations
 
 =over 4
 
@@ -41,9 +45,17 @@ This loads what is required to run a dIngle application.
 
 =back
 
-=head2 Core Concepts
+=head2 The Framework
 
-=over4
+=over 4
+
+=item L<dIngle::Log> - Logging
+
+=back
+
+=head2 The Core Concepts
+
+=over 4
 
 =item L<dIngle::Context>
 

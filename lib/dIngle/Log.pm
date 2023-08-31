@@ -90,7 +90,7 @@
 
     ; my $showwarn = $LEVEL->{$level}
     ; if(defined $showwarn)
-        { my $logtarget = shift
+        { my $logtarget = @_ == 1 ? $self : shift
         ; $self->write("$logtarget: " . $level . " : " . join("\n",@_) . "\n") 
             if $showwarn
         }
@@ -112,9 +112,9 @@
 
 # Public methods
 ; sub get_logger
-    { shift() # until now it is called as method!
+    { shift() # until now it is called as a method!
 
-    ; if( defined($dIngle::LOGGING) && $dIngle::LOGGING eq 'Log::Log4Perl' )
+    ; if( defined($dIngle::LOGGING) && lc($dIngle::LOGGING) eq 'log4perl' )
         { unless( $log4perl )
             { require Log::Log4perl
             ; Log::Log4perl->init($log4perlconfig)
@@ -122,7 +122,7 @@
             }
         ; return $log4perl->(@_)
         }
-      elsif((defined($dIngle::LOGGING) && $dIngle::LOGGING eq 'Log::Testing')
+      elsif((defined($dIngle::LOGGING) && lc($dIngle::LOGGING) eq 'testing')
             || $0 =~ /\.t$/)
         { return 'dIngle::Log::Testing'
         }
@@ -151,18 +151,18 @@ Simply import one or more log methods in your module namespace:
 
    logprogress('info','start some groundwork in babel...');
 
-Alternative this class is a base class of dIngle::Application.
-So you can use the get logger method.
+The alternative is to get the logger object via class method C<get_logger>.
 
-   $obj->get_logger('dIngle.builder.something')->info(...)
+   dIngle::Log->get_logger('dIngle.builder.something')->info(...)
 
 =head1 DESCRIPTION
 
 =head2 import
 
-If you  use this module, there is the possibilty to load log
-functions into your namespace. Use a plain hash with function
-name as key and logging target method as value as parameter.
+If you  use the module, there is the possibilty to create log
+functions in the loading package. Use a plain hash with function
+name as key and logging target as value. The logging target is used
+by Log4perl to organize the log messages.
 
 The exported function needs two parameters. First argument is the
 loglevel which is used as log4perl method. Second argument is the
@@ -170,15 +170,34 @@ log message.
 
 =head2 Log classes
 
-Until now there are only two ways to log or even do not log messages.
-dIngle::Log supports the great Log::Log4perl module and an null logger
-which does nothing with the messages. This is the default for performance
-reasons. Log::Log4perl's configuration is stored at config/log4perl.conf.
+Until now there are three ways to log or even do not log messages.
+To choose which log class is used the global variable C<$dIngle::LOGGING>
+can be set during initialization. 
 
-To choose which log class is used the global variable $dIngle::LOGGING
-can be manipulated. If the value is set to 'Log::Log4Perl' than this class
-will be used. Changing this value during execution time is not well tested.
-So you will doit at your own risk.
+=over 4
+
+=item Log::Log4perl
+
+    $dIngle::LOGGING = 'log4perl';
+
+dIngle::Log supports the great Log::Log4perl module.
+Log::Log4perl's configuration is stored at config/log4perl.conf.
+
+The configuration file can be changed during loading.
+
+    use dIngle::Log log4perlconfig => 'config/my-log4perl.conf';
+
+=item Null Logger
+
+This is the default for performance reasons.
+
+=item Testing Logger
+
+    $dIngle::LOGGING = 'Testing';
+    
+This Logger will also be used if C<$0> file ending is *.t.
+
+=back
 
 =head1 SEE ALSO
 
