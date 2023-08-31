@@ -9,7 +9,10 @@
 ; use Path::Tiny ()
 ; use Carp ()
 
-; use dIngle::Log (_log_modules => 'dIngle.project.modules')
+; use dIngle::Log
+    ( _log_modules => 'dIngle.project.modules'
+    , _log_project => 'dIngle.project'
+    )
 
 # =========================
 #         OBJECT
@@ -54,12 +57,14 @@
       else
         { unless(defined $config)
             { $config = lc "$self"
+            ; $config =~ s/::/-/g
             }
         ; unless($config =~ m|/|)
             { $config = Path::Tiny::path( dIngle::Light->configpath)
                 ->child( $config . '.conf')
         }
         ; push @args, source => $config
+        ; _log_project("debug","Load configuration from source '$config'.")
         }
     ; push @args, 'instance',$args{'instance'} if $args{'instance'}
 
