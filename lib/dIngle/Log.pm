@@ -27,7 +27,7 @@
                 ; $log->$lvl($msg)
                 }
               else
-                { $log->$lvl($msg)
+                { $log->$lvl($trg,$msg)
                 }
             }
         ; install Package::Subroutine:: $caller => $method => $sub
@@ -90,7 +90,9 @@
 
     ; my $showwarn = $LEVEL->{$level}
     ; if(defined $showwarn)
-        { $self->write("$self: " . $level . " : " . join("\n",@_) . "\n") if $showwarn
+        { my $logtarget = shift
+        ; $self->write("$logtarget: " . $level . " : " . join("\n",@_) . "\n") 
+            if $showwarn
         }
       else
         { $self->write( ref $self ? ref $self : $self, "\n")
