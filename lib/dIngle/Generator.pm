@@ -4,6 +4,7 @@
 # ********************
 ; use strict; use warnings; use utf8
 
+; use dIngle::Waypoint
 ; use dIngle::Hive
 ; use dIngle::Context ()
 
@@ -20,7 +21,8 @@
     _ro     => context => '$',
     _lvalue => _module => '$',
     _rw     => formats => '@',
-    _rw     => styles  => '@'
+    _rw     => styles  => '@',
+    _rw     => starttask => sub { "Build all" }
 
 ############################
 # I N I T
@@ -29,6 +31,8 @@
     { my ($self,%args) = @_
     ; $self->[&_project] = defined($args{'project'}) ?
         $args{'project'} : dIngle->project
+    ; Carp::croak "A Generator needs a project to build."
+        unless ref $self->project
     ; $self->[&_hive] = defined($args{'hive'}) ?
         $args{'hive'} : $self->setup_hive
     ; $self->module($args{'module'}) if $args{'module'}
