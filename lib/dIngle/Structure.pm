@@ -56,6 +56,12 @@
         => newline
         => vishtml
         =>
+        
+    # now I can spare one line more without a loss on functionality
+    ; strict->import
+    ; warnings->import
+    ; warnings->unimport('void')
+    ; utf8->import
     }
 
 # for all structures with overwritten constructor
