@@ -59,6 +59,9 @@ dIngle::Waypoint
 
 =head1 DESCRIPTION
 
+This Waypoint helps to encapsulate the interaction with the global
+values in dIngle, eg. project, hive, backend.
+
 =head2 Init
 
 
