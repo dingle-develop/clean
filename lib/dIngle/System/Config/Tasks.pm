@@ -2,25 +2,27 @@
 # *************************************
 ; our $VERSION='0.01'
 # *******************
-; use strict; use warnings; no warnings 'void'; use utf8
+
 ; use basis 'dIngle::Tasks'
 
 ; import from 'dIngle::Config' => qw/default/
 
 ; sub setup
 {
-; vchestf("Config defaults",sub
+    
+; task("Config defaults",sub
     { my $c = dIngle->project->configuration->entry
     ; make("Config organisation",$c);
     ; make("Config project",$c);
     })
     
-; vchestf("Config organisation",sub
+; task("Config organisation",sub
     { my ($obj,$c) = @_
     ; default($c,"organisation","homepage","https://github.com/dingle-develop")
     })
     
 ; vchestf("Config project",alias("NO OP"));
+
 }
 
 ; 1
