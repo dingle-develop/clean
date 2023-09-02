@@ -2,7 +2,7 @@
 # ****************************************
 ; our $VERSION='0.04'
 #********************
-; use strict; use warnings; no warnings 'void'; use utf8
+
 ; use basis 'dIngle::Structure' => ['dIngle::Structure::Root']
 
 ; import from vishtml() => qw/Table Tr Td Div/
