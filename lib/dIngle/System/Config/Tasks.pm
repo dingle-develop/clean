@@ -21,7 +21,7 @@
     ; default($c,"organisation","homepage","https://github.com/dingle-develop")
     })
     
-; vchestf("Config project",alias("NO OP"));
+; task("Config project",alias("NO OP"));
 
 }
 
