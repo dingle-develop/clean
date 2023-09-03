@@ -17,18 +17,16 @@
 
 ; my $gen = new dIngle::Generator::
 
-; $gen->hive->add_layer($system->name)
-; $gen->setup_project(project => $system)
-
-; $gen->hive->add_layer($project->name)
-; $gen->setup_project($project => $project)
+; $gen->use_projects($system,$project)
 
 ; ok($gen->hive->exists("NO OP"),"System Utilities loaded")
 
 ; is($gen->project->name,"Trxt","Project global set")
 ; isa_ok($gen->hive,["dIngle::Hive"],"Hive")
-; isa_ok($gen->module($module),['dIngle::Generator'],"check fluent interface")
-; isa_ok($gen->module,['dIngle::Module'],"check module getter/setter")
+
+; is($gen->starttask,"Build all")
+
+; $gen->build
 
 ; dIngle->dump($gen->hive->dump)
 

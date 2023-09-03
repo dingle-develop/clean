@@ -18,10 +18,12 @@
     }
 
 ; use HO::class
-    _ro => hive => '$',
+    _ro => project => '$',
     _lvalue => task => '$',
-    _rw => object => '$',
     _rw => stash => '%',
+    _lvalue => _module => '$',
+    _ro => _hive => '$',
+    _rw => object => '$',
     _ro => backend => [ '$', sub { dIngle->backend->generic } ],
     _ro => fallbacks => [ '$', sub { [dIngle->backend->generic] } ],
     init => 'hash'
@@ -29,12 +31,13 @@
 ; sub take 
     { my ($self, $task) = @_
     ; foreach my $backend ( $self->get_backends )
-        { if(my $task = $self->hive->take(task => $task, backend => $backend))
-            { return $task
+        { if(my $task = $self->_hive->take(task => $task, backend => $backend))
+            { $self->task = $task
+            ; return $task
             }
         }
     ; _log_store("error","Task \"$task\" is undefined.")
-    ; if( $self->hive->exists("Error - Task undefined") ) 
+    ; if( $self->_hive->exists("Error - Task undefined") ) 
         { return $self->take("Error - Task undefined")
         }
     ; Carp::croak("Task \"$task\" undefined.") 
@@ -58,6 +61,25 @@
 ; sub get_backends
     { my ($self) = @_
     ; return ($self->backend, grep { $_ ne $self->backend } @{$self->fallbacks})
+    }
+    
+; sub module
+    { my ($self,$modul)=@_
+
+    ; if($modul)
+        { unless(ref $modul)
+            { $modul = $self->project->module($modul)
+            }
+        # Fix this XXX
+        ; if( defined($self->_module) && $self->_module ne $modul )
+            { #$self->formats([])
+            }
+        ; $self->_module = $modul
+        ; return $self
+        }
+      else
+        { return $self->_module
+        }
     }
 
 ; 1

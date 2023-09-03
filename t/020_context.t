@@ -14,7 +14,7 @@
 ; use dIngle::Tasks::Task
 
 ; my $system = new dIngle::System::
-; dIngle->register->backend('generic',$system)
+
 ; is(dIngle->backend->generic, 'generic')
 
 ; my $hive = new dIngle::Hive ()
@@ -27,7 +27,7 @@
 
 ; $hive->insert_task($task)
 
-; my $context = new dIngle::Context::(hive => $hive)
+; my $context = new dIngle::Context::(_hive => $hive)
 
 ; $context->stash->{'hallo'} = "Welt!"
 ; is($context->stash->{'hallo'}, "Welt!")
@@ -41,5 +41,10 @@
 ; is($context->backend,'generic',"back at default backend")
 
 ; is($context->run("test"),'run tests');
+
+; my $module = $system->module("Shell")
+; isa_ok($context->module($module),['dIngle::Context'],"check fluent interface")
+; isa_ok($context->module,['dIngle::Module'],"check module getter/setter")
+
 
 ; done_testing()
