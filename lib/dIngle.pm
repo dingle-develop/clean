@@ -19,7 +19,6 @@
   ; $mka->($self,'project')
   ; $mka->($self,'hive')
   ; $mka->($self,'register', dIngle::Registry->new)
-  ; $mka->($self,'context')
   }
 
 #############################
