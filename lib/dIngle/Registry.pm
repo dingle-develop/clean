@@ -1,6 +1,6 @@
   package dIngle::Registry;
 # *************************
-  our $VERSION = '0.01';
+  our $VERSION = '0.02';
 # **********************
 
 ; use strict; use warnings; use utf8
@@ -14,12 +14,12 @@
 ; my %backends
 
 ; sub backend
-    { my ($self,$id,$project) = @_
+    { my ($self,$id) = @_
     ; if(exists $backends{$id})
         { _log('warn',"Backend \"$id\" is already registered.")
         ; return
         }
-    ; $backends{$id} = $project
+    ; $backends{$id} = 1
     ; install Package::Subroutine:: dIngle->backend, $id, sub
         { return $id
         }
