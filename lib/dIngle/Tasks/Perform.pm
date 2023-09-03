@@ -8,14 +8,14 @@
 # und explizite Backendauswahl
 ############################
 ; sub make
-    { my (@args)=@_
+    { my ($task,$context,@args) = @_
     ; $Carp::CarpLevel++
     ; my ($r,@r)
     ; if( wantarray )
-        { @r = dIngle->hive->take(@args)
+        { @r = $context->take($task)->run($context,@args)
         }
       else
-        { $r = dIngle->hive->take(@args)
+        { $r = $context->take($task)->run($context,@args)
         }
     ; $Carp::CarpLevel--
     ; wantarray ? @r : $r
