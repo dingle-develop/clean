@@ -118,16 +118,11 @@
 ; sub structure
     { my ($self,@args) = @_
 
-    ; my @search = map { [@$_, @args] }
-        @{dIngle::Loader::Structure->namespaces}    
-    
-    # add current context to returnargs if there is no
-    ; unless( scalar($self->_returnargs) )
-        { $self->[__returnargs] = [dIngle->context]
-        }
-
     ; unless( defined $self->unit )
-        { foreach my $sp (@search)
+        { my @search = map { [@$_, @args] }
+            @{dIngle::Loader::Structure->namespaces}
+
+        ; foreach my $sp (@search)
             { $self->by_ns(@$sp)
 
             ; if($self->unit->is_ready)
