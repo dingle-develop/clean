@@ -51,6 +51,8 @@ This loads what is required to run a dIngle application.
 
 =item L<dIngle::Log> - Logging
 
+=item L<dIngle::Loader> - Loads code in various ways
+
 =back
 
 =head2 The Core Concepts

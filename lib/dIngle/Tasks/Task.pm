@@ -56,3 +56,15 @@
 ; 1
 
 __END__
+
+=head1 NAME
+
+dIngle::Tasks::Task - a task object
+
+=head1 SYNOPSIS
+
+    my @result = dIngle::Tasks::Task->new({label => 'ultima ratio')
+        ->require( ... )->perform( ... )->ensure( ... )->run(@args);
+        
+=head1 DESCRIPTION
+
