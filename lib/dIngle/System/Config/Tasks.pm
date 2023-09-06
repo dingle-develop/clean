@@ -5,13 +5,14 @@
 
 ; use basis 'dIngle::Tasks'
 
-; import from 'dIngle::Config' => qw/default/
+; import from 'dIngle::Tasks::Config' => qw/default/
 
 ; sub setup
 {
     
 ; task("Config defaults",sub
-    { my $c = dIngle->project->configuration->entry
+    { my ($context) = @_
+    ; my $c = $context->project->configuration->entry
     ; make("Config organisation",$c);
     ; make("Config project",$c);
     })
@@ -23,7 +24,7 @@
     
 ; task("Config project",alias("NO OP"));
 
-}
+} # end setup
 
 ; 1
 
