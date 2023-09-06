@@ -42,6 +42,8 @@
         }
     ; Carp::croak("Task \"$task\" undefined.") 
     }
+
+; sub isdef { $_[0]->_hive->exists($_[1]) }
     
 ; sub run
     { my ($self,$task,@args) = @_
