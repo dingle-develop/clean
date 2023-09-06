@@ -59,3 +59,23 @@ __END__
 
 dIngle::Hive::API - the public functions used for task definition
 
+=head1 SYNOPSIS
+
+    use dIngle::Hive::API ('task','alias','const');
+    
+    task("my task", sub { ... });
+    
+=head1 DESCRIPTION
+
+The function C<task> is used  for creating tasks. The created 
+task object (C<dIngle::Tasks::Task>) uses a DESTROY hook to insert
+the task into the global C<dIngle-E<gt>hive>.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item L<dIngle::Tasks::Task>
+
+=back
+
