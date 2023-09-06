@@ -10,7 +10,6 @@
   Init => {
      project => sub
         { my ($self,$project,$config,$modopt) = (@_,{},{})
-        ; $project->basedir(Cwd::getcwd())
         ; $project->load_config(%$config)
         ; $project->load_modules(%$modopt)
         ; dIngle->project($project)

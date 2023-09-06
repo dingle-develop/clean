@@ -23,7 +23,6 @@
         _rw => name  => '$',               # name of the project
     _lvalue => configuration => '$',       # configuration object
     _method => namespace => sub { undef },
-        _rw => basedir => '$',
         _rw => modules => '$',
         _rw => modulepath => '@',
         _rw => structurepath => '@'
@@ -175,8 +174,6 @@ Store a configuration object, normally of class dIngle::Project::Configuration.
 
 A namespace where the parts of this project resides. The convention is to set
 it up in the configuration file.
-
-=item basedir - rw scalar - the project root directory
 
 =item modules - rw scalar - when setup it contains a dIngle::Modules object.
 
