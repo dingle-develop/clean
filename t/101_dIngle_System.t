@@ -1,13 +1,11 @@
 ; use lib 't/lib'
 ; use Test::dIngle::Application
 
-; use Test2::V0
+; use Test2::V0 ('done_testing','isa_ok','is')
 
 ; use dIngle::Context
 ; use dIngle::System
 ; use dIngle::Hive::Container
-
-; plan(6)
 
 #; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
 #; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
@@ -16,7 +14,6 @@
 ; dIngle->hive($container)
 
 ; my $system = new dIngle::System::
-; dIngle->register->backend('generic',$system)
 ; isa_ok($system, 'dIngle::Project')
 
 ; is [$system->get_submodules],[qw/I18N Tasks/],"default classes"
