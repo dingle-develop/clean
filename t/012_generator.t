@@ -8,7 +8,8 @@
 ; use dIngle::Generator
 
 ; like dies { my $generator = new dIngle::Generator:: },
-    qr/A Generator needs a project to build./,"constructor dies without a project"
+    qr/A Generator needs a project to build. at t\/012_generator.t/,
+    "constructor dies without a project"
     
 
 

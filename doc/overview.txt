@@ -15,5 +15,4 @@ format with  style describe result
 
 hive is a stack of layers
 layer has one or more container
-
 container contains tasks

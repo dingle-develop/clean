@@ -6,7 +6,7 @@
 ; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
 ; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
 
-; use Test2::V0 ('
+; use Test2::V0 ('isa_ok','is','ok','done_testing')
 
 ; use dIngle::Hive::API ('task','alias','const')
 

@@ -18,6 +18,7 @@
    ; my $a = $self->area_setter
    ; my ($root) = node()
    ; $root << node( $self->doctype, newline() )
+
    ; my ($html,$head,$body) = (Html(),Head(),Body())
    ; $root << ($html << newline() 
                      << ($head << newline())

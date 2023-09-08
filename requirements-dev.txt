@@ -1,4 +1,5 @@
 Devel::Cover~1.36
 IO::String~1.05
+Pod::ProjectDocs~0
 Test2::Suite~0
 Test::Output~0

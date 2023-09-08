@@ -11,9 +11,9 @@
 
 ; use dIngle::Log
     _log_structure => 'dIngle.builder.structure',
-    _log_group => 'dIngle.builder.groups',
-    _log_formats => 'dIngle.builder.loadformats',
-    _log_unit => 'dIngle.builder.unit'
+    _log_group     => 'dIngle.builder.groups',
+    _log_formats   => 'dIngle.builder.loadformats',
+    _log_unit      => 'dIngle.builder.unit'
 
 ; our %returns
 ; BEGIN:

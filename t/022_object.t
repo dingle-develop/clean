@@ -10,7 +10,7 @@
 
 ; use dIngle::Object
 
-; my $context = new dIngle::Object::
+; my $object = new dIngle::Object::
 
 
 ; ok(1)

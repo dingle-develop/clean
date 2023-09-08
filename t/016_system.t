@@ -20,8 +20,6 @@
 ; like( dies { $sys->load_config }, 
     qr/Config::General The file \"t\/config\/dingle-system.conf\" does not exist!/)
 
-; print $sys->basedir
-
 #; is($sys->configuration->instance,'testing','Test environment')
 
 

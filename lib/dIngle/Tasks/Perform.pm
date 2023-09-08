@@ -9,7 +9,7 @@
 ############################
 ; sub make
     { my ($task,$context,@args) = @_
-    ; $Carp::CarpLevel++
+    ; local $Carp::CarpLevel = $Carp::Carplevel + 1
     ; my ($r,@r)
     ; if( wantarray )
         { @r = $context->take($task)->run($context,@args)
@@ -17,7 +17,6 @@
       else
         { $r = $context->take($task)->run($context,@args)
         }
-    ; $Carp::CarpLevel--
     ; wantarray ? @r : $r
     }
 

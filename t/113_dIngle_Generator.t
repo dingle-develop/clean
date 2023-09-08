@@ -26,9 +26,12 @@
 
 ; is($gen->starttask,"Build all")
 
+# global "isdef" is used during setup
+; ok( dIngle->isdef($gen->starttask), "start task is defined" )
+
 ; $gen->build
 
-; dIngle->dump($gen->hive->dump)
+#; dIngle->dump($gen->hive->dump)
 
 ; done_testing()
 
