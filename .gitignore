@@ -5,7 +5,8 @@ MYMETA.yml
 blib/
 _build/
 logs/
-^Build$
+Build
+!Build/
 cover_db/
 dog
 example/*/vendor
