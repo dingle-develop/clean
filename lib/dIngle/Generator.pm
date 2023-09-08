@@ -30,8 +30,10 @@
     { my ($self,%args) = @_
     ; $self->[&_project] = defined($args{'project'}) ?
         $args{'project'} : dIngle->project
-    ; Carp::croak "A Generator needs a project to build."
-        unless ref $self->project
+    ; unless( ref $self->project )
+        { local $Carp::CarpLevel = $Carp::CarpLevel + 1
+        ; Carp::croak "A Generator needs a project to build."
+        }
     ; defined($args{'hive'}) ? $self->[&_hive] = $args{'hive'}
                              : $self->setup_hive
     ; $self->module($args{'module'}) if $args{'module'}
