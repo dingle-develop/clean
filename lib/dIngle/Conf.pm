@@ -18,7 +18,6 @@
     )
 
 ; use Carp ()
-; use Data::Dumper ()
 ; use Path::Tiny ()
 
 ; use dIngle::Instance ()
@@ -28,12 +27,21 @@
 
 ; sub detect_instance
     { my ($pkg,$configfile)=@_
-    ; $configfile ||= 'instances.conf'
-    ; my $instanceconfig = Path::Tiny::path($_configpath)->child($configfile)
+    ; my $config = $configfile || 'instances.conf'
+    ; my $instanceconfig = Path::Tiny::path($_configpath)->child($config)
 
     ; my $instance = dIngle::Instance->new()
-    ; $instance->from_configfile($instanceconfig)->detect()
-
+    ; if( $instanceconfig->is_file )
+        { $instance->from_configfile($instanceconfig)->detect()
+        }
+      else
+        { if($configfile)
+            { Carp::croak("Instance configfile '$configfile' not found.")
+            }
+          else
+            { $instance->name("default")->fallback('default')
+            }
+        }
     ; return $instance
     }
 
@@ -79,9 +87,6 @@
         { return $config->{$key}
         }
     }
-
-; sub dump
-    { print Data::Dumper::Dumper(\$config) }
 
 ; sub destroy
     { $config=undef

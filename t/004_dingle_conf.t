@@ -16,7 +16,4 @@
 
 ; my $conf = dIngle::Conf->retrieve('project' => 'hello')
 
-; use Data::Dumper
-; print Dumper($conf)
-
 ; done_testing()
