@@ -28,6 +28,11 @@
 # This have to come after the upper declaration, because it uses them.
 ; use dIngle::Field::Utils
 
+; sub import
+    { shift()
+    ; export from _ => @_
+    }
+
 ; 1
 
 __END__
