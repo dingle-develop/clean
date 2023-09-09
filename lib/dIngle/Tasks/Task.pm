@@ -6,6 +6,8 @@
 
 ; use Ref::Util ()
 
+; use dIngle::Log (_log_task_run => 'dIngle.builder.task.run')
+
 ; use HO::class
     _ro => label => '$',
     _ro => module => sub { scalar caller(2) . "::" },
@@ -14,6 +16,7 @@
     _rw => perform => '$',
     _rw => require  => '$',
     _rw => ensure  => '$',
+    _rw => layer => sub { '' },
     init => 'hashref'
     
 ; sub DESTROY
@@ -24,7 +27,17 @@
 ; sub run
     { my ($self,$context,@args) = @_
     ; $context->task = $self
+    ; $context->inc_recursion_level(my $temp)
+    ; if( $context->recursion_level > $context->max_recursion_level )
+        { Carp::croak("Max recursion level reached: " . $context->recursion_level)
+        }
     ; my $key = $self->label
+    
+    # Backend/Layer Modul Recursion>Label
+    ; my $log = "Run from %-4s/%-6s %-14s %s>%s"
+    ; my $rec = '+'x$context->recursion_level
+    ; _log_task_run('debug',sprintf($log,
+        $self->backend, $self->layer, $self->module, $rec, $self->label));
 
     ; if( $self->require )
         { unless( $self->require->($context,@args) )
