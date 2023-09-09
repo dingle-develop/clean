@@ -16,6 +16,11 @@
     { dIngle->register->backend('generic') unless
         dIngle->backend->can('generic')
     }
+    
+; { use Class::Data::Localize
+  ; my ($mka,$self) = (\&Class::Data::Localize::mk_classdata,__PACKAGE__)
+  ; $mka->($self,'max_recursion_level',100)
+  }
 
 ; use HO::class
     _ro => project => '$',
@@ -26,6 +31,7 @@
     _rw => object => '$',
     _ro => backend => [ '$', sub { dIngle->backend->generic } ],
     _ro => fallbacks => [ '$', sub { [dIngle->backend->generic] } ],
+    _ro => recursion_level => sub { 0 },
     init => 'hash'
     
 ; sub take 
@@ -63,6 +69,17 @@
 ; sub get_backends
     { my ($self) = @_
     ; return ($self->backend, grep { $_ ne $self->backend } @{$self->fallbacks})
+    }
+    
+; sub inc_recursion_level
+    { my $self = $_[0]
+    # paranoia check disabled here
+    #; if( @_ != 2 )
+    #    { Carp::croak("Call inc_recursion_level with a temp var.")
+    #    }
+    ; $self->[&_recursion_level]++
+    ; $_[1] = ReleaseAction->new(sub { $self->[&_recursion_level]-- } )
+    ; $self
     }
     
 ; sub module
