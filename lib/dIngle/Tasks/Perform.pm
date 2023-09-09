@@ -1,7 +1,13 @@
-  package dIngle::Tasks::Perform
-# ******************************
-; our $VERSION='0.02'
-# *******************
+  package dIngle::Tasks::Perform;
+# *******************************
+  our $VERSION='0.02';
+# ********************
+; use Package::Subroutine ()
+
+; sub import
+    { my $self = shift
+    ; export Package::Subroutine:: _ => @_
+    }
 
 ############################
 # $obj Sparfunktionen
