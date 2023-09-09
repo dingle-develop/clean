@@ -29,6 +29,7 @@
     ; unless( CORE::exists $self->container->{$task->backend} )
         { $self->[&_container]->{$task->backend} = $self->create_container
         }
+    ; $task->layer($self->name)
     ; $self->[&_container]->{$task->backend}->insert_task($task)
     }
     
