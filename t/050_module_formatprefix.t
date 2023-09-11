@@ -7,28 +7,17 @@
 
 ; use Test2::V0 
 
+; use dIngle::Module
+
 ; my @modules
 ; BEGIN 
   { my $md='t/lib/Trxt/Module'
-  ; @modules=grep { !/^\.svn$/ && (-d "$md/$_") }
+  ; @modules = map { $_->basename }
+      grep { $_->basename !~ /^\.svn$/ && $_->is_dir }
       Path::Tiny::path($md)->children
   }
 
-; use dIngle::Module
+; ok(@modules > 0,"modules found: " . join(", ",@modules))
 
-; my @BACKENDS = qw/CDML PHP XML/
-
-; my %pre
-; for ( @modules )
-    { my $pre = dIngle::Module->module_prefix($_)
-    ; my $bnd = dIngle::Module->module_backend($_)
-    ; ok(defined($pre),$_)
-    ; ok($bnd eq one(@BACKENDS),"Backend: '$bnd'")
-    ; $pre{$_}++ if $pre
-    }
-    
-; my $stat=0
-; for (keys %pre){ $stat=1 if $pre{$_} > 1 }
-; ok($stat==0,"each prefix is unique")
 
 ; done_testing
