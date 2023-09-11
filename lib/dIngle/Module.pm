@@ -63,6 +63,11 @@
            ->buildable($def->[3])
     }
     
+; sub fullname
+    { my ($self,$sep) = (@_,'-')
+    ; join($sep,$self->project->name,$self->name)
+    }
+    
 ; sub build_object
     { my $self = shift
     ; my $object = new dIngle::Object::(@_)
