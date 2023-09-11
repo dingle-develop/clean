@@ -4,6 +4,7 @@
 # *********************
 
 ; use dIngle::Project ()
+; use dIngle::Waypoint ()
 
 ; use subs qw/init/
 
