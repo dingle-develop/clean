@@ -23,6 +23,8 @@ dIngle::Manual - The manual for dIngle developers
 =item L<dIngle::Light>
 
 This module holds the core information about the dIngle system.
+Currently it is the base path of the installation and the path
+to configuration.
 
 =item L<dIngle::Library>
 
@@ -39,15 +41,17 @@ some time again.
 
 =item L<dIngle::Application>
 
-This loads what is required to run a dIngle application.
-
-=item L<dIngle::Conf>
+This loads what is required to run a dIngle application. dIngle uses
+the Sub::Uplevel module often. This module needs to loaded as early
+as possible.
 
 =back
 
 =head2 The Framework
 
 =over 4
+
+=item L<dIngle::Conf>
 
 =item L<dIngle::Log> - Logging
 
@@ -62,5 +66,7 @@ This loads what is required to run a dIngle application.
 =item L<dIngle::Context>
 
 =item L<dIngle::Project>
+
+=item L<dIngle::Hive>
 
 =back
