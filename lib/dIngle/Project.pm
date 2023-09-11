@@ -117,14 +117,13 @@
     { my ($self,@filter) = @_
     ; my @modules = $self->modules->modules
 
-    ; my %params = @filter
     ; my %filter =
-        ( buildable => sub { !!$_->buildable == !!$params{'buildable'} }
+        ( buildable => sub { !!$_->buildable == !!$_[0] }
         )
 
     ; while(@filter)
         { my ($filter,$para) = splice(@filter,0,2)
-        ; @modules = grep { $filter{$filter} } @modules
+        ; @modules = grep { $filter{$filter}->($para) } @modules
         }
     ; return @modules
     }
