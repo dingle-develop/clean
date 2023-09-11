@@ -20,9 +20,7 @@
 ; use dIngle::Tasks::Perform ()
 
 ; BEGIN
-    { our %REQUEST_MAP =
-        ( 'make_php' => 'dIngle::Tasks::Perform'
-        )
+    { our %REQUEST_MAP = ()
 
     ; sub import
         { my ($self,%args) = @_
