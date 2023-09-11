@@ -62,7 +62,7 @@
     ; my %modules_arg = map { $_ => 1 } @$modules_arg if $modules_arg
     ; $modules_arg{$module_arg} = 1 if $module_arg
     
-    ; my @modules = $project->modules->modules
+    ; my @modules = $project->list_modules(buildable => 0)
     
     ; my @submodules = $project->get_submodules
 
