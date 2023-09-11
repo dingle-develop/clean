@@ -77,7 +77,7 @@
 ; sub _setup_by_directory
     { my ($self,%opts) = @_
     ; my $unit = my $dirinfo = dIngle->load('unit')
-	    ->by_ns($self->path,'DirInfo')->buildunit
+        ->by_ns($self->path,'DirInfo')->buildunit
     ; if($unit->has_error)
         { Carp::croak("Module DirInfo Failure: " . join("\n",@{$unit->errors}))
         }
@@ -147,26 +147,6 @@
             if $module->has_submodule($submodule)
         }
     ; return @list
-    }
-
-##########################
-# Helper Methods old
-##########################
-; sub module_with_format
-    { my ($self,$formatname) = @_
-    ; unless(%{$self->formatmap})
-        { my $fmap = {}
-        ; foreach my $module ($self->modules)
-            { foreach my $format ($module->formats)
-                { $fmap->{"$format"} = $format
-                }
-            }
-        ; $self->[&_formatmap] = $fmap
-        }
-    ; if(my $format = $self->formatmap->{$formatname})
-        { return $format->module
-        }
-    ; return
     }
 
 ; 1
