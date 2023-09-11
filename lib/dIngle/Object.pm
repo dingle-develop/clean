@@ -5,38 +5,23 @@
 
 ; use dIngle::Generic qw/newline node/
 
-; use HO::class
-    _rw => _header    => '$',
-    _rw => _document  => '$';
+; use subs qw/init/
 
-; sub init 
-    { my $self = shift;
-    ; $self->_header(node())
-    ; $self->_document(node())
-    ; $self
-    }
+; use HO::class
+    _ro => header    => sub { node() },
+    _ro => document  => sub { node() },
+    init => 'hash';
 
 ; sub insert
     { my $self = shift
-    ; $self->_document->insert(@_)
+    ; $self->document->insert(@_)
     }
 
 ; sub string
     { my ($self) = @_
-    ; my $header = $self->_header->string
-    ; return $self->_document->string unless length($header)
-    ; return $header . newline() . $self->_document->string
-    }
-
-; sub document
-    { my $self = shift
-    ; return $self->_document unless @_
-    ; my $type = shift
-    ; unless(ref $type)
-        { my $doc = dIngle::Document->new($type,@_)
-        ; $self->_document($doc)
-        ; return $doc
-        }
+    ; my $header = $self->header->string()
+    ; return $self->document->string() unless length($header)
+    ; return $header . newline() . $self->document->string()
     }
 
 ; 1
