@@ -12,8 +12,10 @@
 #   * depends_on method from trunk
 #   * lazy load of formats
 ################################################################################
-; use dIngle::Formats ()
+; use dIngle::Object ()
+
 ; use Ref::Util ()
+; use Try::Tiny ()
 
 # =========================
 #          CLASS
@@ -38,7 +40,7 @@
     _rw => buildable => '$',
     _method => formats => sub
         { my ($self) = shift
-        ; my @formats = dIngle::Formats->load($self)
+        ; my @formats = $self->load_formats
         ; $self->[&_formats] = sub { @formats }
         ; return $self->formats
         },
@@ -63,8 +65,7 @@
     
 ; sub build_object
     { my $self = shift
-    ; my $object = new dIngle::Object::('project' => $self->project, @_)
-    ; dIngle->object($object)
+    ; my $object = new dIngle::Object::(@_)
     ; $object
     }
     
@@ -80,10 +81,26 @@
       )
     ; return dIngle->load->by_ns(@ns)->unit
     }
-        
+
 ; sub has_submodule
     { my ($self,$submodule) = @_
     ; return $self->submodule_unit($submodule)->is_ready
+    }
+
+; sub load_formats
+    { my $self = shift
+    ; my $data = []
+    ; Try::Tiny::try
+        { if(my $formatsclass = dIngle->load->formats($self))
+            { $data = $formatsclass->setup($self)
+            ; die "Result of setup is not an array reference" 
+                    unless Ref::Util::is_arrayref($data)
+            }
+        }
+      Try::Tiny::catch
+        { Carp::croak "Failure during setup formats for @{[$self->name]}:\n $_"
+        }
+    ; return @$data
     }
 
 ; sub DESTROY
