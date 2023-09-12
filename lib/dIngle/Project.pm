@@ -102,8 +102,9 @@
     ; _log_modules('info' => "Load modules for project '$self'.")
     ; _log_modules('debug' => "Modules path " . join("::",@{$opts{path}}))
     ; $self->modules(new dIngle::Modules:: (%opts))
-    ; foreach my $module ($self->modules->modules)
+    ; foreach my $module ($self->list_modules)
         { $module->project($self)
+        ; $self->on_load_module($module)
         }
     ; $self
     }
@@ -134,6 +135,10 @@
     
 ; sub get_submodules
     { return qw/I18N Tasks/
+    }
+    
+; sub on_load_module
+    { my ($self,$module) = @_
     }
 
 ; 1

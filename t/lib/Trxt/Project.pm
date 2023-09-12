@@ -17,6 +17,15 @@
     ; $self
     }
 
+; sub get_submodules
+    { return qw/Tasks/
+    }
+
+; sub on_load_module
+    { my ($self,$module) = @_
+    ; $module->buildable(1)
+    }
+
 ; 1
 
 __END__
@@ -31,4 +40,12 @@ Trxt::Project
   
   my $project = Trxt::Project->new
 
-=head1 DESCRPTION
+=head1 DESCRIPTION
+
+This is a very simple dIngle project for testing purpose. Only C<Tasks> are
+defined as submodules. It does not use a C<ModuleList>, so the directory
+C<Module> is read, to load modules.
+
+In this project all modules are buildable.
+
+
