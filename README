@@ -1,6 +1,41 @@
 
-dIngle builds text files.
+dIngle - VERSION 0.5001
 
-The former incarnation is broken since a long time. So it is unclear
-if the rebirth will work any time time soon.
+dIngle is a library for developing applications which
+are build around a global namespace for function calls.
+
+This programming paradigm has sometimes a bad reputation,
+nonetheless you can tackle some problems easier with this approach as with
+a totally modularized one.
+
+Use cases for now are:
+
+* Generation of text files for example for templates of a
+  dynamic website.
+* A very simple continuous integration server.
+
+
+INSTALLION
+
+    mkdir dingle ; cd dingle
+    
+    git clone https://github.com/dingle-develop/clean.git
+    
+    cd clean
+
+    bash check-requirements.sh
+    
+    bash install.sh
+    
+Please read the Manual for information.
+
+    perldoc lib/dIngle/Manual.pm
+
+Warning! This software is in a pre-alpha state.
+
+LICENSE
+
+dIngle is licensed under GPL v3.
+
+Copyright by dingle-developers 2018-2023
 
