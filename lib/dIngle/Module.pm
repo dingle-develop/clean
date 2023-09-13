@@ -15,7 +15,7 @@
 ; use dIngle::Object ()
 
 ; use Ref::Util ()
-; use Try::Tiny ()
+; use Feature::Compat::Try 0.05
 
 # =========================
 #          CLASS
@@ -95,15 +95,15 @@
 ; sub load_formats
     { my $self = shift
     ; my $data = []
-    ; Try::Tiny::try
+    ; try
         { if(my $formatsclass = dIngle->load->formats($self))
             { $data = $formatsclass->setup($self)
             ; die "Result of setup is not an array reference" 
                     unless Ref::Util::is_arrayref($data)
             }
         }
-      Try::Tiny::catch
-        { Carp::croak "Failure during setup formats for @{[$self->name]}:\n $_"
+      catch($e)
+        { Carp::croak "Failure during setup formats for @{[$self->name]}:\n $e"
         }
     ; return @$data
     }
