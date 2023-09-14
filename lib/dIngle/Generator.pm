@@ -62,15 +62,19 @@
     ; $modules_arg{$module_arg} = 1 if $module_arg
     
     ; my @modules = $project->list_modules(buildable => 0)
-    
-    ; my @submodules = $project->get_submodules
 
     ; foreach my $module (@modules)
         { next if %modules_arg && !exists($modules_arg{$module->name})
-        ; foreach my $class (@submodules)
-            { if( (my $unit = $module->submodule_unit($class))->is_ready)
-                { $unit->modulename->setup
-                }
+        ; $self->setup_module($module)
+        }
+    }
+    
+; sub setup_module
+    { my ($self,$module) = @_
+    ; my @submodules = $module->get_submodules
+    ; foreach my $class (@submodules)
+        { if( (my $unit = $module->submodule_unit($class))->is_ready)
+            { $unit->modulename->setup
             }
         }
     }
@@ -86,6 +90,23 @@
     ; foreach my $project (@projects)
         { $gen->hive->add_layer($project->name)
         ; $gen->setup_project(project => $project)
+        }
+    }
+
+; sub use_module_layer
+    { my ($gen,$name,@modules) = @_
+    ; return unless @modules
+    ; unless(!ref($name) && length($name))
+        { Carp::croak("The layer name is not correct.")
+        }
+    ; unless($gen->hive->has_layer($name))
+        { $gen->hive->add_layer($name)
+        }
+      else
+        { $gen->hive->set_current($name)
+        }
+    ; foreach my $module (@modules)
+        { $gen->setup_module($module)
         }
     }
     
