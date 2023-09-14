@@ -21,20 +21,3 @@
 
 ; ok(1)
 ; done_testing()
-; exit(0)
-
-; my $dingle = Test::dIngle->dingle
-    ( module => "JavaScriptFiles"
-    , file   => "textelinks"
-    )
-    
-; isa_ok($dingle,'dIngle')
-
-; dIngle::I18N->i18n_setup
-
-; $dingle->take("dIngle Init")
-
-; my $source = "./Web/js/".$dingle->take("JSF Filename")
-
-; print $dingle->take("Build TemplateFromFile"
-    , source => $source)

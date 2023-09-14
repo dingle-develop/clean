@@ -17,5 +17,6 @@
 
 ; like( dies { $hive->set_current('unknown') }, qr/Layer '.*' is unknown./)
 ; ok( lives { $hive->add_layer("system") })
+; ok( $hive->has_layer('system'),'layer "system" exists')
 
 ; done_testing
