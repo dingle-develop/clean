@@ -74,6 +74,10 @@
     ; $object
     }
     
+; sub get_submodules
+    { $_[0]->project->get_submodules
+    }
+    
 ; sub submodule_unit
     { my ($self,$submodule) = @_
 
