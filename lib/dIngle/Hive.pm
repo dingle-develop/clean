@@ -22,10 +22,15 @@
     { my ($self, $name) = @_
     ; my $layer = $self->create_layer($name)
     ; push @{$self->[_layer]}, $layer
-    ; $self->layermap->{$name} = $layer
+    ; $self->[&_layermap]->{$name} = $layer
     ; $self->_current = $layer
     ; _log_store("info","Add hive layer '$name' of class @{[ref($layer)]}.")
     ; return $self    
+    }
+
+; sub has_layer
+    { my ($self, $name) = @_
+    ; CORE::exists($self->layermap->{$name})
     }
     
 ; sub set_current
