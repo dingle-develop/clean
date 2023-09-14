@@ -137,31 +137,3 @@ dIngle::Generator - bookkeeping for the generating environment
 =head1 DESCRIPTION
 
 
-=head2 Properties
-
-=head3 C<module>
-
-Without argument it returns the current value.
-
-With a argument it stores the module name for the generation process after
-a check if the module is buildable. When not it croaks. As a setter it returns
-the object itself.
-
-=head3 C<formats>
-
-=head2 Code Loading
-
-=head2 Generator Methods
-
-=head3 build_module
-
-This class method take a module name and generates all format files and all
-chunks.
-
-=head3 get_sites
-
-This method returs a list of all sites to build for a given module.
-
-=head3 get_chunks
-
-Same as above, but for the chunks which belong to the module.
