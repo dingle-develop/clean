@@ -4,10 +4,6 @@
 # **********************
 ; use strict; use warnings; use utf8
 
-; use dIngle::Unit
-
-; use File::Spec ()
-
 ; use subs qw/init/
 ; use HO::class
     _rw => name => '$',
