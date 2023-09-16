@@ -16,13 +16,6 @@
 ; my $tasks02 = new Trxt::Module::Brom::Tasks::
 ; isa_ok($tasks02,ref($tasks01))
 
-# time will tell if namesplit is better part of a project
-; my ($base,$modul,$action)=$tasks02->name_split
-
-; is($base,'Trxt::Module::Brom','name_split base')
-; is($modul,'Brom','namesplit module name')
-; is($action,'Tasks','namesplit action name')
-
 ; is($tasks02->domain,'module_brom')
 
 ; done_testing

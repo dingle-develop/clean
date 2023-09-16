@@ -8,9 +8,6 @@
 
 ; use HO::class
 
-; use dIngle::Tools::Methods ()
-; mixin from 'dIngle::Tools::Methods' => qw /name_split/
-
 ########################
 # indirect use of import
 ########################
