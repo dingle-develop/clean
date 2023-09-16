@@ -9,8 +9,8 @@
 ; use dIngle::Project
 ; use dIngle::Waypoint
 
-; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
-; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
+#; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
+#dIngle::Log::Testing::LEVEL->{'info'} = 1;
 
 ; if(defined $ENV{'DINGLE_CONFIG_PATH'})
     { is $ENV{'DINGLE_CONFIG_PATH'}, dIngle::Light->configpath,
@@ -31,7 +31,11 @@
 ; is(dIngle->project . "","Trxt",'project stringified')
 ; is(dIngle->configuration->instance,'testsystem','instance testsystem')
 
-; ok(scalar dIngle->project->modules->modules,'Modules found')
+; is(dIngle->configuration->get_entry('i18n','language'),'es','languages configured')
+
+#; dIngle->dump(dIngle->project->configuration)
+
+; ok(scalar dIngle->project->list_modules,'Modules found')
 
 ; my @modulenames = sort map { $_->name } dIngle->project->list_modules;
 ; is([@modulenames],['Brom'],'module names')
