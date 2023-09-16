@@ -70,7 +70,7 @@
     ; $self->configuration = dIngle::Project::Configuration->new
     ; $self->configuration->retrieve(@args)
 
-    ; my $namespace = $self->configuration->entry('namespace')
+    ; my $namespace = $self->configuration->get_entry('namespace')
     ; if(!$self->namespace && !$namespace)
         { $self->set_namespace( ucfirst($self->name) ) 
         }
@@ -78,7 +78,7 @@
         { $self->set_namespace( $namespace ) 
         }
 
-    ; if(my $mp = $self->configuration->entry('modulepath'))
+    ; if(my $mp = $self->configuration->get_entry('modulepath'))
         { $self->modulepath([split /::/, $mp])
         }
     ; return $self
@@ -204,7 +204,9 @@ Similar to modulepath but for structures.
 
 =item C<load_modules(%args)>
 
-Setup for the C<modules> accessor. All arguments are optional. 
+Setup for the C<modules> accessor. All arguments are optional.
+
+The hook C<on_load_module> is called for every module after loading.
 
 =over 4
 

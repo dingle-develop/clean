@@ -33,7 +33,7 @@
     }
 
 ; sub config
-    { my $value = shift()->project->configuration->entry(@_)
+    { my $value = shift()->project->configuration->get_entry(@_)
     ; Carp::carp("Undefined configuration: " . join('.',@_))
         unless defined $value
     ; return $value

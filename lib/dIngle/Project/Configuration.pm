@@ -22,7 +22,7 @@
     ; return $self->{'__config__'}
     }
 
-; sub entry
+; sub get_entry
     { my ($self,@path) = @_
     ; my $config = $$self{__config__}
     ; $config = $self->retrieve unless $config
@@ -45,7 +45,7 @@
     }
 
 ; sub instance 
-    { $_[0]->entry('configuration')
+    { $_[0]->get_entry('configuration')
     }
 
 ; 1
