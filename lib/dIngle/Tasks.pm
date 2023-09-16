@@ -13,7 +13,6 @@
 ########################
 ; use dIngle::Generic ()
 ; use dIngle::Hive::API ()
-; use dIngle::Tasks::Contract ()
 ; use dIngle::Tasks::Perform ()
 
 ; BEGIN
@@ -37,8 +36,6 @@
 
         ; export from 'dIngle::Hive::API' => qw/alias const task/
         ; export from 'dIngle::Tasks::Perform' => qw/make prepare/
-        ; export from 'dIngle::Tasks::Contract' => qw/requires ensures valid/ 
-        #; export from 'dIngle::Hive' => qw/alias vchestf vcmodf chadd const tconst/
         ; export from 'dIngle::Generic'
             => vishtml     # HTML Elemente
             => visform     # Eingabeelemente
