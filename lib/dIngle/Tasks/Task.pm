@@ -81,3 +81,21 @@ dIngle::Tasks::Task - a task object
         
 =head1 DESCRIPTION
 
+=head2 Creation
+
+In the dIngle framework most task objects are created in the setup
+method of L<dIngle::Tasks> classes. The helper function C<task> exists
+for this reason in L<dIngle::Hive::API>. It uses the C<DESTROY> method 
+to run the on_destroy hook of the object. Normally this hook is used to 
+store the task object into the hive.
+
+The constructor expects his arguments as a hash reference.
+
+=head2 Object Properties
+
+Each task needs to have a C<label>. The label is used to fetch them from
+hive. This is a read only property.
+
+The C<module> property contains normally the package name where the task is
+defined.
+
