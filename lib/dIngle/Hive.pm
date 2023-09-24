@@ -42,14 +42,6 @@
     ; return $self
     }
     
-; sub exists
-    { my ($self,$taskname) = @_
-    ; foreach my $layer (reverse $self->layer)
-        { return 1 if $layer->exists($taskname)
-        }
-    ; return 0
-    }
-    
 ; sub insert_task
     { my ($self, $task) = @_
     ; $self->_current->insert_task($task)
