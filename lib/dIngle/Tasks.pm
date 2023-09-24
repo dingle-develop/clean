@@ -93,28 +93,6 @@
         }
     }
 
-=head2 task_caller
-
-Gibt Datei und Zeilennummer des Aufrufenden Tasks zurück.
-
-=cut
-
-; sub task_caller
-    { my $l= defined($_[1]) ? $_[1] : 2
-    ; my @poscaller
-    ; for( @poscaller = caller($l)
-         ; $l<100 && (  $poscaller[0] eq 'VC'
-                     || $poscaller[0] eq 'dIngle'
-                     || $poscaller[0] eq 'dIngle::Base'
-                     || $poscaller[0] eq 'dIngle::Tasks::Perform'
-                     || !($poscaller[3] =~ /[tm]ake$/)
-                     )
-         ; @poscaller = caller(++$l) ) {  }
-    #; print "#"x80,"\n",join "\n",@poscaller
-
-    ; $poscaller[1].":".$poscaller[2]
-    }
-
 ; 1
 
 __END__
