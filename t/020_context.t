@@ -61,8 +61,8 @@
   }
 ; is($context->backend,'generic',"back at default backend")
 
-; is($context->run("test"),'run tests');
-; $context->run("start") # runs 3 tests
+; is($context->make("test"),'run tests');
+; $context->make("start") # runs 3 tests
 
 ; my $module = $system->module("Shell")
 ; isa_ok($context->set_module($module),['dIngle::Context'],"check fluent interface")

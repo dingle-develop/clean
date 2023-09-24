@@ -12,7 +12,6 @@
 
 ; my $hive = new dIngle::Hive::
 
-; ok($hive->can('exists'))
 ; ok($hive->can('insert_task'))
 
 ; like( dies { $hive->set_current('unknown') }, qr/Layer '.*' is unknown./)

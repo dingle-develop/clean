@@ -17,7 +17,6 @@
     configuration
     debug
     dump
-    isdef
     load
 /
 

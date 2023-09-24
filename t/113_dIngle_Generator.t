@@ -19,15 +19,19 @@
 
 ; $gen->use_projects($system,$project)
 
-; ok($gen->hive->exists("NO OP"),"System Utilities loaded")
+; ok($gen->hive->take(task => "NO OP", backend => dIngle->backend->generic),
+    "System Utilities loaded")
 
 ; is($gen->project->name,"Trxt","Project global set")
 ; isa_ok($gen->hive,["dIngle::Hive"],"Hive")
 
 ; is($gen->starttask,"Build all")
 
+; $gen->setup_context
+; my $context = $gen->context
+
 # global "isdef" is used during setup
-; ok( dIngle->isdef($gen->starttask), "start task is defined" )
+; ok( $context->take($gen->starttask), "start task is defined" )
 
 ; $gen->build
 
