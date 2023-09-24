@@ -65,8 +65,8 @@
 ; $context->run("start") # runs 3 tests
 
 ; my $module = $system->module("Shell")
-; isa_ok($context->module($module),['dIngle::Context'],"check fluent interface")
-; isa_ok($context->module,['dIngle::Module'],"check module getter/setter")
+; isa_ok($context->set_module($module),['dIngle::Context'],"check fluent interface")
+; isa_ok($context->get_module,['dIngle::Module'],"check module getter/setter")
 
 
 ; done_testing()

@@ -82,23 +82,22 @@
     ; $self
     }
     
-; sub module
+; sub set_module
     { my ($self,$modul)=@_
 
-    ; if($modul)
-        { unless(ref $modul)
-            { $modul = $self->project->module($modul)
-            }
-        # Fix this XXX
-        ; if( defined($self->_module) && $self->_module ne $modul )
-            { #$self->formats([])
-            }
-        ; $self->_module = $modul
-        ; return $self
+    ; unless(ref $modul)
+        { $modul = $self->project->module($modul)
         }
-      else
-        { return $self->_module
+    # Fix this XXX
+    ; if( defined($self->_module) && $self->_module ne $modul )
+        { #$self->formats([])
         }
+    ; $self->_module = $modul
+    ; return $self
+    }
+    
+; sub get_module
+    { $_[0]->_module
     }
 
 ; 1
