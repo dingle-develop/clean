@@ -37,23 +37,51 @@
 ; sub take 
     { my ($self, $task) = @_
     ; foreach my $backend ( $self->get_backends )
-        { if(my $task = $self->_hive->take(task => $task, backend => $backend))
-            { $self->task = $task
-            ; return $task
-            }
+        { my $task = $self->_hive->take(task => $task, backend => $backend)
+        ; return $task if $task
         }
-    ; _log_store("error","Task \"$task\" is undefined.")
-    ; if( $self->_hive->exists("Error - Task undefined") ) 
-        { return $self->take("Error - Task undefined")
-        }
-    ; Carp::croak("Task \"$task\" undefined.") 
+    ; undef
+    }
+    
+; sub make
+    { my ($self, $label, @args) = @_
+    ; my $task = $self->take($label)
+    ; return $task->run($self,@args) if $task
+    
+    ; my $autoload = $self->get_autoload($label)
+    ; return $autoload->run($self,$label,@args) if $autoload
+    
+    ; _log_store("error","Task\"$task\" is undefined and no AUTOLOAD found.")
+    ; my $error = $self->take("Error - Task undefined")
+    ; return $error->run($self, $label) if $error
+
+    ; Carp::croak("Can not run task '$label'.")
     }
 
-; sub isdef { $_[0]->_hive->exists($_[1]) }
+; sub take_autoload
+    { my ($self, $label) = @_
+
+    ; my $autoload = $self->take("$label AUTOLOAD")
+    ; return $autoload if $autoload
     
-; sub run
-    { my ($self,$task,@args) = @_
-    ; return $self->take($task)->run($self,@args)
+    ; my $idx = length($label)
+    ; while($idx >= 0)
+        { $idx--
+        ; $idx = rindex($label,' ',$idx)
+        ; if($idx > 0)
+            { my $pre = substr($label,0,$idx)
+            ; $autoload = $self->take("$pre AUTOLOAD")
+            ; return $autoload if $autoload
+            }
+        }
+    ; undef
+    }
+
+# isdef and isautoload together
+; sub can_do
+    { my ($self,$key) = @_
+    ; return 1 if $self->take($key)
+    ; return 1 if $self->take_autoload($key)
     }
     
 ; sub set_backend
