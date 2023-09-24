@@ -38,12 +38,6 @@
         unless defined $value
     ; return $value
     }
-    
-; sub isdef
-    { my ($obj,$key)=@_
-    ; dIngle->hive->exists($key)
-    }
-    
 
 ############################
 # Development
