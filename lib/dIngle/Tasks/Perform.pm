@@ -9,24 +9,35 @@
     ; export Package::Subroutine:: _ => @_
     }
 
-############################
-# $obj Sparfunktionen
-# und explizite Backendauswahl
-############################
 ; sub make
-    { my ($task,$context,@args) = @_
+    { my ($label, $context, @args) = @_
     ; local $Carp::CarpLevel = $Carp::Carplevel + 1
-    ; my ($r,@r)
-    ; if( wantarray )
-        { @r = $context->take($task)->run($context,@args)
-        }
-      else
-        { $r = $context->take($task)->run($context,@args)
-        }
-    ; wantarray ? @r : $r
+    ; $context->take($label)->run($context,@args)
+    }
+
+; sub take
+    { my ($label,$context) = @_
+    ; $context->take($label)
+    }
+
+; sub run
+    { my ($task,$context,@args) = @_
+    ; $task->run($context,@args)
     }
 
 ; 1
 
 __END__
+
+=head1 NAME
+
+dIngle::Tasks::Perform
+
+=head1 DESCRIPTION
+
+This package defines some funktion which are wrappers around
+context object methods. In the autors opinion writing function calls
+is easier and the code is more readable.
+
+This module has pure aesthetical purpose.
 
