@@ -21,7 +21,7 @@
 
 ; my $system = new dIngle::System::
 ; $system->modules->sort_modules( sub
-    { my @modules = sort { $a->name cmp $b->name } @{$_[0]}
+    { my @modules = sort { $a cmp $b } @{$_[0]} # cmp is overloaded
     ; @modules
     })
 
