@@ -2,7 +2,7 @@
 ; use Test::dIngle::Application
 ; use strict; use warnings
 
-; use Test2::V0
+; use Test2::V0 qw(isa_ok is done_testing)
 
 #; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
 #; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
@@ -17,7 +17,7 @@
 ; use dIngle::Context
 ; use dIngle::Hive::Container
 ; my $context = new dIngle::Context::
-    ( hive => new dIngle::Hive::Container::
+    ( _hive => new dIngle::Hive::Container::
     )
     
 ; my $structure = dIngle->load('new')->structure("Std::Root")
