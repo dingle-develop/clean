@@ -11,30 +11,32 @@
 
 ; BEGIN
     { delete $ENV{ 'DINGLE_BASE_PATH' }
-	; delete $ENV{ 'DINGLE_CONFIG_PATH' }
+    ; delete $ENV{ 'DINGLE_CONFIG_PATH' }
+    
+    ; $dIngle::LOGGING = 'testing'
     }
 
 ; sub import 
     { my ($class,@args) = (@_)
-	; my @specs = 
-	    ( Getopt::Lucid::Param( 'config' )->default('')
-	    , Getopt::Lucid::Param( 'sitelib' )->default('site-lib.conf')
+    ; my @specs = 
+        ( Getopt::Lucid::Param( 'config' )->default('')
+        , Getopt::Lucid::Param( 'sitelib' )->default('site-lib.conf')
         )
  
     ; my $opt = Getopt::Lucid->getopt( \@specs ,\@args)
-		
-	; return if $opt->get_config eq 'dingle-env'
 
-	; my $testconfig = Path::Tiny::path(__FILE__)->parent(4)->child('/config')
+    ; return if $opt->get_config eq 'dingle-env'
+
+    ; my $testconfig = Path::Tiny::path(__FILE__)->parent(4)->child('/config')
     ; if( $opt->get_config )
         { $testconfig = Path::Tiny::path($testconfig)->child( $opt->get_config )
-	    }
-	; $ENV{'DINGLE_CONFIG_PATH'} = $testconfig
-	
-	; local $@
-	; eval "use dIngle::Library '" . $opt->get_sitelib . "'"
-	; die $@ if $@
-	}
+        }
+    ; $ENV{'DINGLE_CONFIG_PATH'} = $testconfig
+
+    ; local $@
+    ; eval "use dIngle::Library '" . $opt->get_sitelib . "'"
+    ; die $@ if $@
+    }
 
 ; 1
 
