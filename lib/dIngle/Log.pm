@@ -50,7 +50,9 @@
     { our $AUTOLOAD
     ; if( $dIngle::Log::DEBUG )
         { require Carp
-        ; Carp::carp $AUTOLOAD
+        ; shift
+        ; my $method = pop(@{[split /::/,$AUTOLOAD]})
+        ; Carp::carp "$method: ", @_
         }
     }
 
