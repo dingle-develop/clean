@@ -1,9 +1,10 @@
   package dIngle::System::Build::Tasks
 # ************************************
-; our $VERSION = '0.01'
+; our $VERSION = '0.02'
 # *********************
 
-; use basis dIngle::Tasks
+; use dIngle::Hive::API qw(task)
+; use dIngle::Tasks::Perform qw(make take run)
 
 ; sub setup
 {
@@ -18,13 +19,32 @@
 
 ; task("Build module", sub
     { my ($context,$module) = @_
-    ; $context->module($module)
-    ; if($context->isdef("Build module $module"))
-        { make("Build module " . $module->name, $context)
+
+    ; my $mod = $module->fullname
+    ; if(my $task = take("Build module $mod",$context))
+        { run($task, $context, $module)
         }
       else
-        {
+        { #make("Hive add module layer",$context,$module)
+        ; make("Build module formats",$context,$module) if $module->formats
+        ; make("Build module chunks",$context,$module)
+        ; #make("Hive drop module layer",$context,$module)
         }
+    })
+    ->require(sub
+        { my ($context,$module) = @_
+        ; $module->isa('dIngle::Module')
+        })
+    
+; task("Build module formats", sub
+    { my ($context,$module) = @_
+    ; my @formats = $module->formats
+    
+    })
+    
+; task("Build module chunks", sub
+    { my ($context,$module) = @_
+    ; ''
     })
 
 } # end setup
