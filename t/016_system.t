@@ -6,8 +6,8 @@
 ; use Test2::V0 ('is','done_testing','like','dies')
 ; use Test2::Bundle::More ('is_deeply')
 
-; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
-; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
+#; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
+#; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
 
 ; use dIngle::System
 
@@ -18,7 +18,8 @@
 ; is($sys->configuration,undef,'Configuration is undefined')
 
 ; like( dies { $sys->load_config }, 
-    qr/Config::General The file \"t\/config\/dingle-system.conf\" does not exist!/)
+    qr/Config::General The file \"t\/config\/dingle-system.conf\" does not exist!/,
+    'no config for this project so far')
 
 #; is($sys->configuration->instance,'testing','Test environment')
 

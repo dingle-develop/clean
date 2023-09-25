@@ -3,7 +3,7 @@
 # *****************************
 ; use strict; use warnings; use utf8
 
-; use Test2::V0 qw(ok is done_testing isa_ok)
+; use Test2::V0 qw(ok is done_testing isa_ok like dies)
 
 #; $dIngle::Log::Testing::LEVEL->{'debug'} = 1;
 #; $dIngle::Log::Testing::LEVEL->{'info'} = 1;
@@ -68,5 +68,8 @@
 ; isa_ok($context->set_module($module),['dIngle::Context'],"check fluent interface")
 ; isa_ok($context->get_module,['dIngle::Module'],"check module getter/setter")
 
+; like dies { $context->make("UNKNOWN TASK XYZ") },
+    qr/^Can not run task 'UNKNOWN TASK XYZ'\./,
+    "It dies on a unknown task."
 
 ; done_testing()
