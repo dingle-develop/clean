@@ -1,8 +1,9 @@
 ; use lib 't/lib'
 ; use Test::dIngle::Light # -*- perl -*-
 # *************************
-; use Test::More
-; use Test::Output
+; use strict; use warnings; use utf8
+; use Test2::V0 qw(plan done_testing is ok)
+; use Capture::Tiny qw/capture/
 ; plan(tests => 7)
 
 ; use dIngle::Log
@@ -10,6 +11,12 @@
 ; my $logger = dIngle::Log->get_logger
 
 ; is($logger,'dIngle::Log::Testing','Logger is the logger class name')
+
+; sub output_is
+    { my ($coderef, $expect_stdout, $expect_stderr, $msg) = (@_,'','','')
+    ; my ($stdout,$stderr,@result) = capture { $coderef->() }
+    ; ok($stdout eq $expect_stdout && $stderr eq $expect_stderr, $msg)
+    }
 
 ; output_is( sub{ $logger->debug('this is a debug message') }, '', '',
     "Debug messages are hidden in testing.")
