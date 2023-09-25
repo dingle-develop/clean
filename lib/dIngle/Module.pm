@@ -18,18 +18,6 @@
 ; use Feature::Compat::Try 0.05
 
 # =========================
-#          CLASS
-# =========================
-; sub depends_on
-    { my ($class,@args) = @_
-    # localize currentmodule
-    ; dIngle->currentmodule(undef,my $temp)
-    ; foreach my $module (@args)
-        { dIngle->load_module($module)
-        }
-    }
-
-# =========================
 #         OBJECT
 # =========================
 ; use subs 'init'
