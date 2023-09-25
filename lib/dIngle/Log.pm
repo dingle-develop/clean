@@ -122,8 +122,7 @@
             }
         ; return $log4perl->(@_)
         }
-      elsif((defined($dIngle::LOGGING) && lc($dIngle::LOGGING) eq 'testing')
-            || $0 =~ /\.t$/)
+      elsif(defined($dIngle::LOGGING) && lc($dIngle::LOGGING) eq 'testing')
         { return 'dIngle::Log::Testing'
         }
       else
