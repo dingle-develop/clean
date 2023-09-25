@@ -48,10 +48,10 @@
     ; my $task = $self->take($label)
     ; return $task->run($self,@args) if $task
     
-    ; my $autoload = $self->get_autoload($label)
+    ; my $autoload = $self->take_autoload($label)
     ; return $autoload->run($self,$label,@args) if $autoload
     
-    ; _log_store("error","Task\"$task\" is undefined and no AUTOLOAD found.")
+    ; _log_store("error","Task\"$label\" is undefined and no AUTOLOAD found.")
     ; my $error = $self->take("Error - Task undefined")
     ; return $error->run($self, $label) if $error
 
