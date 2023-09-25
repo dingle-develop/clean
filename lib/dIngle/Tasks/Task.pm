@@ -41,8 +41,7 @@
 
     ; if( $self->require )
         { unless( $self->require->($context,@args) )
-            { Carp::carp "Failure during check of arguments for $key."
-            ; return undef
+            { Carp::croak "Failure during check of arguments for $key."
             }   
         }
     ; unless( $self->ensure )
