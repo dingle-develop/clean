@@ -14,7 +14,18 @@ dIngle::Manual - The manual for dIngle developers
 
 =head1 DESCRIPTION
 
+dIngle is a library for developing applications which
+are build around a global namespace for function calls.
 
+This programming paradigm has sometimes a bad reputation,
+nonetheless you can tackle some problems easier with this 
+approach as with a totally modularized one.
+
+The typical use case for this programming environment is
+the generation of template files, which are used in other
+software projects.
+
+=head1 OVERVIEW
 
 =head2 The Foundations
 
@@ -36,8 +47,12 @@ a subroutine for loading them.
 
 dIngle was in it's first incarnation installed and used on separate
 systems. To solve the problem of differences, which come from
-this circumstances, this feature was introduced. Maybe it is useful
-some time again.
+this circumstances, this feature was introduced. In the instance
+configuration are different setups described and the right one is
+chosen automatically.
+
+C<dIngle::Instance> is also used to build a project with different
+configurations.
 
 =item L<dIngle::Application>
 
@@ -51,7 +66,7 @@ as possible.
 
 =over 4
 
-=item L<dIngle::Conf>
+=item L<dIngle::Conf> - Configuration
 
 =item L<dIngle::Log> - Logging
 
@@ -62,6 +77,9 @@ as possible.
 =head2 The Core Concepts
 
 =over 4
+
+=item L<dIngle::Generator>
+
 
 =item L<dIngle::Context>
 
