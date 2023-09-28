@@ -45,16 +45,20 @@
     
 ; sub make
     { my ($self, $label, @args) = @_
-    ; my $task = $self->take($label)
-    ; return $task->run($self,@args) if $task
+    ;  { local $Carp::CarpLevel = $Carp::CarpLevel + 1
+       ; if(scalar caller eq 'dIngle::Tasks::Perform')
+           { $Carp::CarpLevel = $Carp::CarpLevel + 1
+           }
+       ; my $task = $self->take($label)
+       ; return $task->run($self,@args) if $task
     
-    ; my $autoload = $self->take_autoload($label)
-    ; return $autoload->run($self,$label,@args) if $autoload
+       ; my $autoload = $self->take_autoload($label)
+       ; return $autoload->run($self,$label,@args) if $autoload
     
-    ; _log_store("error","Task\"$label\" is undefined and no AUTOLOAD found.")
-    ; my $error = $self->take("Error - Task undefined")
-    ; return $error->run($self, $label) if $error
-
+       ; _log_store("error","Task\"$label\" is undefined and no AUTOLOAD found.")
+       ; my $error = $self->take("Error - Task undefined")
+       ; return $error->run($self, $label) if $error
+       }
     ; Carp::croak("Can not run task '$label'.")
     }
 
