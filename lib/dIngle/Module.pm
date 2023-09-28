@@ -3,23 +3,11 @@
   our $VERSION='0.04';
 # ********************
 ; use strict; use warnings; use utf8
-################################################################################
-# Changes:
-# 0.3 - 2009-07-05
-#   * dIngle::Module is an object
-# 0.4 - 2009-10-10
-#   * attribute 'requires' removed
-#   * depends_on method from trunk
-#   * lazy load of formats
-################################################################################
 ; use dIngle::Object ()
 
 ; use Ref::Util ()
 ; use Feature::Compat::Try 0.05
 
-# =========================
-#         OBJECT
-# =========================
 ; use subs 'init'
 ; use HO::class
     _rw => name => '$',
