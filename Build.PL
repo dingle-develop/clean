@@ -11,7 +11,7 @@ my $builder = Module::Build->new(
     dist_author => [
         'Sebastian Knapp <sknpp@cpan.org>'
     ],
-    license => 'perl',
+    license => 'gpl3',
     dist_abstract => 'a software generator',
     requires => {
        'perl' => '5.12.0'
