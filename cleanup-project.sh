@@ -11,3 +11,4 @@ fi
 [ -L bin/dingle ] && rm -f bin/dingle
 
 rm -rf sitelib
+make clean
