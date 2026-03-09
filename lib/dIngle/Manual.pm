@@ -46,10 +46,11 @@ a subroutine for loading them.
 =item L<dIngle::Instance>
 
 dIngle was in it's first incarnation installed and used on separate
-systems. To solve the problem of differences, which come from
-this circumstances, this feature was introduced. In the instance
-configuration are different setups described and the right one is
-chosen automatically.
+systems. An Instance can solve the problem of differences in various 
+environments through automatic detection of the right one. In the 
+instance configuration are different setups described and the right
+one is chosen automatically. The current implementation is only in a 
+proof of concept state.
 
 C<dIngle::Instance> is also used to build a project with different
 configurations.
