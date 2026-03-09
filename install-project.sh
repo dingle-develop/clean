@@ -11,9 +11,6 @@ fi
 mkdir -p bin
 mkdir -p vendor
 
-cpanm -L vendor --self-contained <requirements.txt
-cpanm -L vendor --self-contained <requirements-dev.txt
-
 if [ -d vendor/p5-app-dingle ] ; then
     ( cd vendor/p5-app-dingle ; git pull --no-rebase)
 else

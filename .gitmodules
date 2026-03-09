@@ -1,0 +1,3 @@
+[submodule "p5mm"]
+	path = p5mm
+	url = https://codeberg.org/giftnuss/p5mm.git
